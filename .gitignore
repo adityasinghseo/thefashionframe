@@ -1,0 +1,19 @@
+# OS & Environment files
+.DS_Store
+Thumbs.db
+*.log
+
+# Large backup archives (exceeds GitHub 100MB limit)
+wp-content/ai1wm-backups/*.wpress
+wp-content/ai1wm-backups/*.tar
+wp-content/ai1wm-backups/*.zip
+
+# Production credentials file (keep unique per server)
+wp-config-production.php
+
+# Local-specific files
+local-xdebuginfo.php
+
+# WordPress temporary files
+wp-content/upgrade/
+wp-content/cache/
