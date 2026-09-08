@@ -1,6 +1,6 @@
 <?php
 /**
- * The Template for displaying all single products with Luxury Heritage Design
+ * The Template for displaying all single products
  *
  * @package The_Fashion_Frame
  */
@@ -141,7 +141,7 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 						?>
 					</div>
 					<div class="product-tax-note">
-						<span><?php esc_html_e( 'Inclusive of all taxes • Complimentary boutique shipping', 'the-fashion-frame' ); ?></span>
+						<span><?php esc_html_e( 'Inclusive of all taxes • Fast & reliable shipping', 'the-fashion-frame' ); ?></span>
 					</div>
 				</div>
 
@@ -149,7 +149,7 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 				<div class="product-stock-indicator">
 					<span class="stock-dot"></span>
 					<?php if ( $product->is_in_stock() ) : ?>
-						<span class="stock-text"><?php esc_html_e( 'In Stock • Handcrafted & Ready to Dispatch', 'the-fashion-frame' ); ?></span>
+						<span class="stock-text"><?php esc_html_e( 'In Stock • Ready to Dispatch', 'the-fashion-frame' ); ?></span>
 					<?php else : ?>
 						<span class="stock-text out-of-stock"><?php esc_html_e( 'Currently Out of Stock', 'the-fashion-frame' ); ?></span>
 					<?php endif; ?>
@@ -172,8 +172,8 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 					<div class="perk-item">
 						<span class="material-symbols-outlined perk-icon">auto_awesome</span>
 						<div class="perk-info">
-							<strong><?php esc_html_e( 'Authentic Heritage', 'the-fashion-frame' ); ?></strong>
-							<span><?php esc_html_e( 'Handcrafted Lucknowi needlework', 'the-fashion-frame' ); ?></span>
+							<strong><?php esc_html_e( 'Premium Quality', 'the-fashion-frame' ); ?></strong>
+							<span><?php esc_html_e( 'Fine fabrics & quality stitching', 'the-fashion-frame' ); ?></span>
 						</div>
 					</div>
 					<div class="perk-item">
@@ -186,7 +186,7 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 					<div class="perk-item">
 						<span class="material-symbols-outlined perk-icon">verified</span>
 						<div class="perk-info">
-							<strong><?php esc_html_e( 'Boutique Guarantee', 'the-fashion-frame' ); ?></strong>
+							<strong><?php esc_html_e( 'Satisfaction Guarantee', 'the-fashion-frame' ); ?></strong>
 							<span><?php esc_html_e( '14-day seamless exchange', 'the-fashion-frame' ); ?></span>
 						</div>
 					</div>
@@ -198,7 +198,7 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 					<!-- 1. Description Accordion -->
 					<details class="product-accordion" open>
 						<summary>
-							<span class="accordion-title"><?php esc_html_e( 'Description & Artisanship', 'the-fashion-frame' ); ?></span>
+							<span class="accordion-title"><?php esc_html_e( 'Description & Details', 'the-fashion-frame' ); ?></span>
 							<span class="accordion-icon"><span class="material-symbols-outlined">expand_more</span></span>
 						</summary>
 						<div class="accordion-content">
@@ -209,7 +209,7 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 					<!-- 2. Details & Fabric Care Accordion -->
 					<details class="product-accordion">
 						<summary>
-							<span class="accordion-title"><?php esc_html_e( 'Fabric, Threadwork & Care', 'the-fashion-frame' ); ?></span>
+							<span class="accordion-title"><?php esc_html_e( 'Fabric & Care', 'the-fashion-frame' ); ?></span>
 							<span class="accordion-icon"><span class="material-symbols-outlined">expand_more</span></span>
 						</summary>
 						<div class="accordion-content">
@@ -219,7 +219,7 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 							} else {
 								?>
 								<ul class="luxury-care-list">
-									<li><strong><?php esc_html_e( 'Embroidery:', 'the-fashion-frame' ); ?></strong> <?php esc_html_e( 'Fine artisanal Lucknowi Chikankari & delicate border detailing.', 'the-fashion-frame' ); ?></li>
+									<li><strong><?php esc_html_e( 'Design & Detailing:', 'the-fashion-frame' ); ?></strong> <?php esc_html_e( 'Carefully finished stitching & high quality detailing.', 'the-fashion-frame' ); ?></li>
 									<li><strong><?php esc_html_e( 'Fabric:', 'the-fashion-frame' ); ?></strong> <?php esc_html_e( 'Premium breathable festive cotton / silk blend, gentle on skin.', 'the-fashion-frame' ); ?></li>
 									<li><strong><?php esc_html_e( 'Fit:', 'the-fashion-frame' ); ?></strong> <?php esc_html_e( 'Comfort tailored silhouette designed for effortless elegance.', 'the-fashion-frame' ); ?></li>
 									<li><strong><?php esc_html_e( 'Wash Care:', 'the-fashion-frame' ); ?></strong> <?php esc_html_e( 'Dry clean or gentle hand wash separately in cold water.', 'the-fashion-frame' ); ?></li>
@@ -233,11 +233,11 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 					<!-- 3. Delivery & Returns Accordion -->
 					<details class="product-accordion">
 						<summary>
-							<span class="accordion-title"><?php esc_html_e( 'Shipping & Boutique Returns', 'the-fashion-frame' ); ?></span>
+							<span class="accordion-title"><?php esc_html_e( 'Shipping & Easy Returns', 'the-fashion-frame' ); ?></span>
 							<span class="accordion-icon"><span class="material-symbols-outlined">expand_more</span></span>
 						</summary>
 						<div class="accordion-content">
-							<p><?php esc_html_e( 'Each order is individually inspected and dispatched in signature luxury packaging. Orders are fulfilled within 24-48 business hours with express tracked courier delivery.', 'the-fashion-frame' ); ?></p>
+							<p><?php esc_html_e( 'Each order is carefully inspected and packaged before dispatch. Orders are fulfilled within 24-48 business hours with express tracked courier delivery.', 'the-fashion-frame' ); ?></p>
 							<p style="margin-top: 0.75rem;"><?php esc_html_e( 'We offer an easy 14-day exchange and return policy on all unworn garments with original tags attached.', 'the-fashion-frame' ); ?></p>
 						</div>
 					</details>

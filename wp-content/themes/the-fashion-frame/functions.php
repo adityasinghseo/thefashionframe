@@ -114,12 +114,14 @@ add_action( 'wp_enqueue_scripts', 'the_fashion_frame_scripts' );
  */
 function the_fashion_frame_default_primary_menu() {
 	$womens_url    = the_fashion_frame_get_category_url( array( 'womens-suits', 'women', 'womens', 'suits' ), '/womens-suits/' );
+	$mens_url      = the_fashion_frame_get_category_url( array( 'mens-wear', 'men', 'mens' ), '/mens-wear/' );
 	$kids_url      = the_fashion_frame_get_category_url( array( 'kids-wear', 'kids', 'children' ), '/kids-wear/' );
 	$new_url       = home_url( '/new-arrivals/' );
 	$coll_url      = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/collections/' );
 
 	echo '<ul class="header-nav-list">';
 	echo '<li><a class="nav-link" href="' . esc_url( $womens_url ) . '">' . esc_html__( "Women's Suits", 'the-fashion-frame' ) . '</a></li>';
+	echo '<li><a class="nav-link" href="' . esc_url( $mens_url ) . '">' . esc_html__( "Men's Wear", 'the-fashion-frame' ) . '</a></li>';
 	echo '<li><a class="nav-link" href="' . esc_url( $kids_url ) . '">' . esc_html__( 'Kids Wear', 'the-fashion-frame' ) . '</a></li>';
 	echo '<li><a class="nav-link" href="' . esc_url( $new_url ) . '">' . esc_html__( 'New Arrivals', 'the-fashion-frame' ) . '</a></li>';
 	echo '<li><a class="nav-link" href="' . esc_url( $coll_url ) . '">' . esc_html__( 'Collections', 'the-fashion-frame' ) . '</a></li>';
@@ -131,12 +133,14 @@ function the_fashion_frame_default_primary_menu() {
  */
 function the_fashion_frame_default_mobile_menu() {
 	$womens_url    = the_fashion_frame_get_category_url( array( 'womens-suits', 'women', 'womens', 'suits' ), '/womens-suits/' );
+	$mens_url      = the_fashion_frame_get_category_url( array( 'mens-wear', 'men', 'mens' ), '/mens-wear/' );
 	$kids_url      = the_fashion_frame_get_category_url( array( 'kids-wear', 'kids', 'children' ), '/kids-wear/' );
 	$new_url       = home_url( '/new-arrivals/' );
 	$coll_url      = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/collections/' );
 
 	echo '<ul class="mobile-drawer-menu">';
 	echo '<li><a href="' . esc_url( $womens_url ) . '">' . esc_html__( "Women's Suits", 'the-fashion-frame' ) . '</a></li>';
+	echo '<li><a href="' . esc_url( $mens_url ) . '">' . esc_html__( "Men's Wear", 'the-fashion-frame' ) . '</a></li>';
 	echo '<li><a href="' . esc_url( $kids_url ) . '">' . esc_html__( 'Kids Wear', 'the-fashion-frame' ) . '</a></li>';
 	echo '<li><a href="' . esc_url( $new_url ) . '">' . esc_html__( 'New Arrivals', 'the-fashion-frame' ) . '</a></li>';
 	echo '<li><a href="' . esc_url( $coll_url ) . '">' . esc_html__( 'Collections', 'the-fashion-frame' ) . '</a></li>';

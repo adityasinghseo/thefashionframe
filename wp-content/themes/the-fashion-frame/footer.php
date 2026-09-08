@@ -21,7 +21,7 @@
 					<h3 class="footer-brand-name"><?php bloginfo( 'name' ); ?></h3>
 				</div>
 				<p class="font-body-md" style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1.5rem;">
-					<?php bloginfo( 'description' ) ? bloginfo( 'description' ) : esc_html_e( 'The Art of Lucknowi Heritage.', 'the-fashion-frame' ); ?>
+					<?php bloginfo( 'description' ) ? bloginfo( 'description' ) : esc_html_e( "Readymade Men's, Women's & Kids' Clothing Store in Lucknow.", 'the-fashion-frame' ); ?>
 				</p>
 				<p class="font-label-caps" style="color: rgba(255, 255, 255, 0.6);">
 					&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All rights reserved.', 'the-fashion-frame' ); ?>
@@ -44,6 +44,7 @@
 					?>
 					<ul class="footer-links">
 						<li><a href="<?php echo esc_url( home_url( '/womens-suits/' ) ); ?>"><?php esc_html_e( "Women's Suits", 'the-fashion-frame' ); ?></a></li>
+						<li><a href="<?php echo esc_url( home_url( '/mens-wear/' ) ); ?>"><?php esc_html_e( "Men's Wear", 'the-fashion-frame' ); ?></a></li>
 						<li><a href="<?php echo esc_url( home_url( '/kids-wear/' ) ); ?>"><?php esc_html_e( 'Kids Wear', 'the-fashion-frame' ); ?></a></li>
 						<li><a href="<?php echo esc_url( home_url( '/new-arrivals/' ) ); ?>"><?php esc_html_e( 'New Arrivals', 'the-fashion-frame' ); ?></a></li>
 						<li><a href="<?php echo esc_url( home_url( '/collections/' ) ); ?>"><?php esc_html_e( 'Collections', 'the-fashion-frame' ); ?></a></li>

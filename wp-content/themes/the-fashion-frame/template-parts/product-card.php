@@ -24,7 +24,7 @@ $is_featured  = $product->is_featured();
 
 // Get product category or fabric term
 $categories = get_the_terms( $product_id, 'product_cat' );
-$category_name = ! empty( $categories ) && ! is_wp_error( $categories ) ? $categories[0]->name : __( 'Chikankari', 'the-fashion-frame' );
+$category_name = ! empty( $categories ) && ! is_wp_error( $categories ) ? $categories[0]->name : __( 'Readymade', 'the-fashion-frame' );
 
 // Calculate discount percentage if on sale
 $discount_badge = '';
@@ -52,7 +52,7 @@ if ( $is_on_sale ) {
 		<?php elseif ( $is_featured ) : ?>
 			<div class="product-badge badge-handcrafted">
 				<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
-				<span><?php esc_html_e( 'Handcrafted', 'the-fashion-frame' ); ?></span>
+				<span><?php esc_html_e( 'Featured', 'the-fashion-frame' ); ?></span>
 			</div>
 		<?php endif; ?>
 

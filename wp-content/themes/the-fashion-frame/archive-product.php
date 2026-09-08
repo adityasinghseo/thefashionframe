@@ -20,7 +20,7 @@ if ( is_product_category() ) {
 	$category_desc  = term_description();
 } elseif ( is_shop() ) {
 	$category_title = function_exists( 'woocommerce_page_title' ) ? woocommerce_page_title( false ) : __( 'All Collections', 'the-fashion-frame' );
-	$category_desc  = __( 'Explore our handcrafted Lucknowi creations, blending timeless artistry with contemporary elegance.', 'the-fashion-frame' );
+	$category_desc  = __( "Explore our complete collection of readymade men's wear, women's suits, and kids' clothing in Lucknow.", 'the-fashion-frame' );
 } else {
 	$category_title = function_exists( 'woocommerce_page_title' ) ? woocommerce_page_title( false ) : get_the_title();
 }
@@ -31,7 +31,7 @@ if ( is_product_category() ) {
 	<!-- Category Archive Header -->
 	<header class="archive-header text-center mb-16 relative" style="margin-bottom: 4rem;">
 		<span class="font-label-caps text-on-surface-variant uppercase tracking-widest block mb-2">
-			<?php esc_html_e( 'Heritage Boutique', 'the-fashion-frame' ); ?>
+			<?php esc_html_e( 'Readymade Collection', 'the-fashion-frame' ); ?>
 		</span>
 		<h1 class="font-display-lg text-primary mb-4">
 			<?php echo esc_html( $category_title ); ?>

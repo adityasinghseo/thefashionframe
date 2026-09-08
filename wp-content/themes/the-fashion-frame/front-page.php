@@ -75,9 +75,9 @@ if ( function_exists( 'wc_get_products' ) ) {
 		<div class="hero-overlay"></div>
 	</div>
 	<div class="hero-content">
-		<h1 class="font-display-lg hero-title"><?php esc_html_e( 'The Art of Lucknowi Heritage', 'the-fashion-frame' ); ?></h1>
+		<h1 class="font-display-lg hero-title"><?php esc_html_e( 'Readymade Fashion for Men, Women & Kids', 'the-fashion-frame' ); ?></h1>
 		<p class="font-body-lg hero-subtitle">
-			<?php esc_html_e( 'Discover the timeless elegance of slow fashion, where ornate craftsmanship meets modern minimalism.', 'the-fashion-frame' ); ?>
+			<?php esc_html_e( "Explore premium readymade men's wear, women's suits, and kids' clothing in Lucknow. High quality apparel designed for everyday elegance and festive celebrations.", 'the-fashion-frame' ); ?>
 		</p>
 		<a href="<?php echo esc_url( $womens_link ); ?>" class="btn-primary">
 			<?php esc_html_e( 'SHOP NOW', 'the-fashion-frame' ); ?>
@@ -115,8 +115,8 @@ if ( function_exists( 'wc_get_products' ) ) {
 <!-- 3. Featured Products Grid (8 Products) -->
 <section class="featured-products-section site-container" style="padding-bottom: var(--section-gap-lg);">
 	<div class="section-header text-center" style="margin-bottom: 3.5rem;">
-		<span class="font-label-caps text-on-surface-variant uppercase tracking-widest block mb-2"><?php esc_html_e( 'Handcrafted Elegance', 'the-fashion-frame' ); ?></span>
-		<h2 class="font-headline-lg text-primary"><?php esc_html_e( 'Featured Creations', 'the-fashion-frame' ); ?></h2>
+		<span class="font-label-caps text-on-surface-variant uppercase tracking-widest block mb-2"><?php esc_html_e( 'Curated Fashion Store', 'the-fashion-frame' ); ?></span>
+		<h2 class="font-headline-lg text-primary"><?php esc_html_e( 'Featured Arrivals', 'the-fashion-frame' ); ?></h2>
 		<div style="width: 48px; height: 1px; background: var(--color-secondary-fixed-dim); margin: 1rem auto 0;"></div>
 	</div>
 
@@ -147,7 +147,7 @@ if ( function_exists( 'wc_get_products' ) ) {
 				),
 				array(
 					'cat'   => 'Chanderi Silk',
-					'title' => 'Sage Heritage Kurta Set',
+					'title' => 'Sage Green Straight Suit',
 					'price' => '$520',
 					'badge' => '',
 					'img'   => 'https://lh3.googleusercontent.com/aida-public/AB6AXuCGmupDJUpO2UI6m5bGDzvdjbOdZS23oK0AdcnJ02Ofxk_5-usMN_ckKH63PmG5Rpmsx_i6fE4ggsLnwA13cR8ecR9AjrBYMwXY4vSMsSUb9t5Ctk-NIteqBKHw7Z6wuYiNn-08RAsAI4u0E0NOY19C4mvs4Q6V5aifBY7zf2669yvH-q8S-1KJaXrQ7a0WeY_BEnaqIqHNc9QhOB5SOxFV5AyglewoT-4GF38epdF4mcukYZKXiTi0Pw',
@@ -252,9 +252,9 @@ if ( function_exists( 'wc_get_products' ) ) {
 		</svg>
 	</div>
 	<div class="brand-story-inner">
-		<h2 class="font-headline-lg"><?php esc_html_e( 'Rooted in Tradition, Crafted for Today.', 'the-fashion-frame' ); ?></h2>
+		<h2 class="font-headline-lg"><?php esc_html_e( 'Premium Readymade Fashion in Lucknow', 'the-fashion-frame' ); ?></h2>
 		<p class="font-body-lg">
-			<?php esc_html_e( 'Every piece is a testament to the slow, deliberate art of Lucknowi craftsmanship. We blend heritage techniques with modern editorial minimalism to frame you in timeless elegance.', 'the-fashion-frame' ); ?>
+			<?php esc_html_e( "Discover our complete range of readymade men's wear, women's suits, and kids' clothing. From festive occasions to everyday wear, we bring you quality fashion and comfortable fits right here in Lucknow.", 'the-fashion-frame' ); ?>
 		</p>
 	</div>
 </section>

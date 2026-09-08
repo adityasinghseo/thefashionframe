@@ -3,7 +3,7 @@ Theme Name: The Fashion Frame
 Theme URI: https://thefashionframe.com
 Author: The Fashion Frame Team
 Author URI: https://thefashionframe.com
-Description: Modern Heritage Lucknowi Fashion Boutique WordPress Theme. Blends traditional Indian craftsmanship with contemporary luxury editorial aesthetics.
+Description: Readymade Men's, Women's and Kids' Clothing Store in Lucknow.
 Version: 1.0.0
 Tested up to: 6.7
 Requires at least: 6.0
@@ -11,11 +11,11 @@ Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: the-fashion-frame
-Tags: luxury, fashion, boutique, e-commerce, custom-menu, featured-images, full-width-template
+Tags: luxury, fashion, readymade, mens-wear, womens-wear, kids-wear, lucknow, e-commerce, custom-menu, featured-images, full-width-template
 */
 
 :root {
-  /* Colors from Stitch Design System - Heritage Boutique */
+  /* Colors from Stitch Design System - Fashion Store */
   --color-primary: #001106;
   --color-primary-container: #0d2818;
   --color-on-primary: #ffffff;
@@ -1041,7 +1041,7 @@ img {
   border-color: var(--color-secondary-fixed);
 }
 
-/* Add to Cart Button (Gold/Emerald Heritage Luxury Style - No Default Purple!) */
+/* Add to Cart Button (Gold/Emerald Luxury Style - No Default Purple!) */
 .product-add-to-cart-wrapper button.single_add_to_cart_button.button,
 .product-add-to-cart-wrapper .single_add_to_cart_button,
 .woocommerce button.button.alt,

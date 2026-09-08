@@ -67,7 +67,7 @@
 				$cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
 				$cart_count = the_fashion_frame_cart_count();
 				?>
-				<a href="<?php echo esc_url( $cart_url ); ?>" class="header-action-btn header-cart-btn" aria-label="<?php esc_attr_e( 'Shopping Bag', 'the-fashion-frame' ); ?>">
+				<a href="<?php echo esc_url( $cart_url ); ?>" class="header-action-btn header-cart-btn" aria-label="<?php esc_attr_e( 'Cart', 'the-fashion-frame' ); ?>">
 					<span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>
 					<?php if ( $cart_count > 0 ) : ?>
 						<span class="cart-count"><?php echo esc_html( $cart_count ); ?></span>
@@ -114,7 +114,7 @@
 		</nav>
 
 		<div class="mobile-drawer-footer">
-			<p class="font-label-caps text-secondary-fixed mb-2"><?php esc_html_e( 'The Art of Lucknowi Heritage', 'the-fashion-frame' ); ?></p>
+			<p class="font-label-caps text-secondary-fixed mb-2"><?php esc_html_e( "Readymade Men's, Women's & Kids' Clothing Store in Lucknow", 'the-fashion-frame' ); ?></p>
 			<p class="font-body-md" style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></p>
 		</div>
 	</div>
