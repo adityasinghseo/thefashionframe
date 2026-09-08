@@ -21,7 +21,7 @@
 					<h3 class="footer-brand-name"><?php bloginfo( 'name' ); ?></h3>
 				</div>
 				<p class="font-body-md" style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1.5rem;">
-					<?php bloginfo( 'description' ) ? bloginfo( 'description' ) : esc_html_e( "Readymade Men's, Women's & Kids' Clothing Store in Lucknow.", 'the-fashion-frame' ); ?>
+					<?php echo get_bloginfo( 'description' ) ? esc_html( get_bloginfo( 'description' ) ) : esc_html__( "Readymade Men's, Women's & Kids' Clothing Store in Lucknow.", 'the-fashion-frame' ); ?>
 				</p>
 				<p class="font-label-caps" style="color: rgba(255, 255, 255, 0.6);">
 					&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All rights reserved.', 'the-fashion-frame' ); ?>
