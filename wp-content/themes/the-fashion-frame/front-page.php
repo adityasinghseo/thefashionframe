@@ -26,6 +26,7 @@ if ( is_wp_error( $womens_link ) ) {
 	$womens_link = home_url( '/product-category/womens-suits/' );
 }
 
+
 // Kids Wear
 $kids_term = get_term_by( 'slug', 'kids-wear', 'product_cat' );
 if ( ! $kids_term || is_wp_error( $kids_term ) ) {
@@ -39,28 +40,30 @@ if ( is_wp_error( $kids_link ) ) {
 	$kids_link = home_url( '/product-category/kids-wear/' );
 }
 
-// 2. Fetch 8 Products using wc_get_products()
+// 2. Fetch 8 Products using wc_get_products() - Focused on Women's Suits
 $products = array();
 if ( function_exists( 'wc_get_products' ) ) {
-	// First attempt: fetch featured products
+	// First attempt: fetch featured products in women's suits
 	$products = wc_get_products(
 		array(
 			'status'   => 'publish',
 			'limit'    => 8,
+			'category' => array( 'womens-suits' ),
 			'featured' => true,
 			'orderby'  => 'date',
 			'order'    => 'DESC',
 		)
 	);
 
-	// Fallback: If fewer than 8 featured products, fetch latest published products
+	// Fallback: If fewer than 8, fetch latest published products in women's suits
 	if ( count( $products ) < 8 ) {
 		$products = wc_get_products(
 			array(
-				'status'  => 'publish',
-				'limit'   => 8,
-				'orderby' => 'date',
-				'order'   => 'DESC',
+				'status'   => 'publish',
+				'limit'    => 8,
+				'category' => array( 'womens-suits' ),
+				'orderby'  => 'date',
+				'order'    => 'DESC',
 			)
 		);
 	}
@@ -70,18 +73,31 @@ if ( function_exists( 'wc_get_products' ) ) {
 <!-- 1. Hero Section -->
 <section class="hero-section">
 	<div class="hero-bg-wrapper">
-		<?php $hero_img_url = get_template_directory_uri() . '/images/hero-womens-kids-collection.jpg'; ?>
-		<div class="hero-bg-image" style="background-image: url('<?php echo esc_url( $hero_img_url ); ?>');"></div>
+		<?php
+		$hero_img_desktop = get_template_directory_uri() . '/images/hero-womens-suits-luxury-hd.jpg';
+		$hero_img_mobile  = get_template_directory_uri() . '/images/hero-womens-suits-luxury-mobile-hd.jpg';
+		?>
+		<picture class="hero-picture">
+			<source media="(max-width: 768px)" srcset="<?php echo esc_url( $hero_img_mobile ); ?>">
+			<img src="<?php echo esc_url( $hero_img_desktop ); ?>" alt="<?php esc_attr_e( "The Fashion Frame - Luxury Women's Suits & Couture Attire", 'the-fashion-frame' ); ?>" class="hero-bg-image" loading="eager" fetchpriority="high" />
+		</picture>
 		<div class="hero-overlay"></div>
 	</div>
 	<div class="hero-content">
-		<h1 class="font-display-lg hero-title"><?php esc_html_e( 'Readymade Fashion for Men, Women & Kids', 'the-fashion-frame' ); ?></h1>
+		<span class="hero-tagline"><?php esc_html_e( 'ARTISANAL LUXURY & COUTURE', 'the-fashion-frame' ); ?></span>
+		<h1 class="font-display-lg hero-title"><?php esc_html_e( "Artisanal Women's Suits & Readymade Couture", 'the-fashion-frame' ); ?></h1>
 		<p class="font-body-lg hero-subtitle">
-			<?php esc_html_e( "Explore premium readymade men's wear, women's suits, and kids' clothing in Lucknow. High quality apparel designed for everyday elegance and festive celebrations.", 'the-fashion-frame' ); ?>
+			<?php esc_html_e( "Explore premium readymade women's suit sets, designer kurta ensembles, and handcrafted festive attire in Lucknow. Pure fabrics tailored for royal elegance and everyday grace.", 'the-fashion-frame' ); ?>
 		</p>
-		<a href="<?php echo esc_url( $womens_link ); ?>" class="btn-primary">
-			<?php esc_html_e( 'SHOP NOW', 'the-fashion-frame' ); ?>
-		</a>
+		<div class="hero-actions">
+			<a href="<?php echo esc_url( $womens_link ); ?>" class="btn-primary hero-btn">
+				<span><?php esc_html_e( "SHOP WOMEN'S SUITS", 'the-fashion-frame' ); ?></span>
+				<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+			</a>
+			<a href="<?php echo esc_url( function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop/' ) ); ?>" class="hero-btn-secondary">
+				<span><?php esc_html_e( 'VIEW ALL COLLECTIONS', 'the-fashion-frame' ); ?></span>
+			</a>
+		</div>
 	</div>
 </section>
 
@@ -109,6 +125,12 @@ if ( function_exists( 'wc_get_products' ) ) {
 				<span class="category-card-cta"><?php esc_html_e( 'EXPLORE COLLECTION', 'the-fashion-frame' ); ?></span>
 			</div>
 		</a>
+	</div>
+
+	<!-- Mobile Swipe Dots Indicator -->
+	<div class="category-scroll-indicator" aria-hidden="true">
+		<button type="button" class="category-dot is-active" aria-label="<?php esc_attr_e( 'Category 1', 'the-fashion-frame' ); ?>" data-index="0"></button>
+		<button type="button" class="category-dot" aria-label="<?php esc_attr_e( 'Category 2', 'the-fashion-frame' ); ?>" data-index="1"></button>
 	</div>
 </section>
 
@@ -200,7 +222,7 @@ if ( function_exists( 'wc_get_products' ) ) {
 			foreach ( $mock_items as $item ) :
 				?>
 				<article class="product-card group flex flex-col relative">
-					<div class="product-card-media relative w-full aspect-[3/4] mb-4 bg-surface-container-low rounded-lg overflow-hidden gold-hairline isolate">
+					<div class="product-card-media relative w-full aspect-square mb-3 bg-transparent rounded-lg overflow-hidden gold-hairline isolate">
 						<?php if ( ! empty( $item['badge'] ) ) : ?>
 							<?php if ( strpos( $item['badge'], 'OFF' ) !== false || $item['badge'] === 'SALE' ) : ?>
 								<div class="product-badge badge-sale"><?php echo esc_html( $item['badge'] ); ?></div>
@@ -212,7 +234,7 @@ if ( function_exists( 'wc_get_products' ) ) {
 							<?php endif; ?>
 						<?php endif; ?>
 						<a href="<?php echo esc_url( $womens_link ); ?>" class="block w-full h-full">
-							<img src="<?php echo esc_url( $item['img'] ); ?>" alt="<?php echo esc_attr( $item['title'] ); ?>" class="product-card-img object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" />
+							<img src="<?php echo esc_url( $item['img'] ); ?>" alt="<?php echo esc_attr( $item['title'] ); ?>" class="product-card-img object-contain w-full h-full transition-transform duration-700 group-hover:scale-105" />
 						</a>
 						<div class="product-card-overlay">
 							<a href="<?php echo esc_url( $womens_link ); ?>" class="product-quickview-btn" aria-label="<?php echo esc_attr( $item['title'] ); ?>">
@@ -252,9 +274,9 @@ if ( function_exists( 'wc_get_products' ) ) {
 		</svg>
 	</div>
 	<div class="brand-story-inner">
-		<h2 class="font-headline-lg"><?php esc_html_e( 'Premium Readymade Fashion in Lucknow', 'the-fashion-frame' ); ?></h2>
+		<h2 class="font-headline-lg"><?php esc_html_e( "Lucknow's Premier Women's Readymade Boutique", 'the-fashion-frame' ); ?></h2>
 		<p class="font-body-lg">
-			<?php esc_html_e( "Discover our complete range of readymade men's wear, women's suits, and kids' clothing. From festive occasions to everyday wear, we bring you quality fashion and comfortable fits right here in Lucknow.", 'the-fashion-frame' ); ?>
+			<?php esc_html_e( "Discover our curated collection of readymade women's suits, elegant kurtas, and artisanal ensembles in Lucknow. Crafted with pure fabrics and timeless detailing, designed to bring effortless elegance and royal poise to every occasion.", 'the-fashion-frame' ); ?>
 		</p>
 	</div>
 </section>

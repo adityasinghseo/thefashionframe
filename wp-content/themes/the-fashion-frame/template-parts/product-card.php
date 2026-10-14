@@ -29,8 +29,8 @@ $category_name = ! empty( $categories ) && ! is_wp_error( $categories ) ? $categ
 // Calculate discount percentage if on sale
 $discount_badge = '';
 if ( $is_on_sale ) {
-	$regular_price = (float) $product->get_regular_price();
-	$sale_price    = (float) $product->get_sale_price();
+	$regular_price = $product->is_type( 'variable' ) ? (float) $product->get_variation_regular_price( 'min' ) : (float) $product->get_regular_price();
+	$sale_price    = $product->is_type( 'variable' ) ? (float) $product->get_variation_sale_price( 'min' ) : (float) $product->get_sale_price();
 	if ( $regular_price > 0 && $sale_price > 0 && $regular_price > $sale_price ) {
 		$percentage = round( ( ( $regular_price - $sale_price ) / $regular_price ) * 100 );
 		$discount_badge = sprintf( '%d%% OFF', $percentage );
@@ -40,9 +40,9 @@ if ( $is_on_sale ) {
 }
 ?>
 
-<article <?php wc_product_class( 'product-card group flex flex-col relative', $product ); ?>>
+<article <?php wc_product_class( 'product-card', $product ); ?>>
 	<!-- Product Image Container -->
-	<div class="product-card-media relative w-full aspect-[3/4] mb-4 bg-surface-container-low rounded-lg overflow-hidden gold-hairline isolate">
+	<div class="product-card-media relative w-full aspect-square mb-3 bg-transparent rounded-lg overflow-hidden gold-hairline isolate">
 		
 		<!-- Badges -->
 		<?php if ( $is_on_sale && $discount_badge ) : ?>
@@ -59,9 +59,9 @@ if ( $is_on_sale ) {
 		<!-- Thumbnail -->
 		<a href="<?php echo esc_url( $product_link ); ?>" class="block w-full h-full" tabindex="-1" aria-hidden="true">
 			<?php if ( has_post_thumbnail( $product_id ) ) : ?>
-				<?php echo get_the_post_thumbnail( $product_id, 'woocommerce_thumbnail', array( 'class' => 'product-card-img object-cover w-full h-full transition-transform duration-700 group-hover:scale-105' ) ); ?>
+				<?php echo get_the_post_thumbnail( $product_id, 'woocommerce_thumbnail', array( 'class' => 'product-card-img object-contain w-full h-full transition-transform duration-700 group-hover:scale-105' ) ); ?>
 			<?php else : ?>
-				<img src="<?php echo esc_url( wc_placeholder_img_src( 'woocommerce_thumbnail' ) ); ?>" alt="<?php echo esc_attr( $title ); ?>" class="product-card-img object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" />
+				<img src="<?php echo esc_url( wc_placeholder_img_src( 'woocommerce_thumbnail' ) ); ?>" alt="<?php echo esc_attr( $title ); ?>" class="product-card-img object-contain w-full h-full transition-transform duration-700 group-hover:scale-105" />
 			<?php endif; ?>
 		</a>
 
@@ -78,7 +78,7 @@ if ( $is_on_sale ) {
 		<span class="product-card-category font-label-caps text-on-surface-variant uppercase tracking-wider">
 			<?php echo esc_html( $category_name ); ?>
 		</span>
-		<h2 class="product-card-title font-headline-sm text-primary line-clamp-1">
+		<h2 class="product-card-title">
 			<a href="<?php echo esc_url( $product_link ); ?>" class="hover:text-secondary transition-colors">
 				<?php echo esc_html( $title ); ?>
 			</a>

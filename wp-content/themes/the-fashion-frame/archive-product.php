@@ -20,7 +20,7 @@ if ( is_product_category() ) {
 	$category_desc  = term_description();
 } elseif ( is_shop() ) {
 	$category_title = function_exists( 'woocommerce_page_title' ) ? woocommerce_page_title( false ) : __( 'All Collections', 'the-fashion-frame' );
-	$category_desc  = __( "Explore our complete collection of readymade men's wear, women's suits, and kids' clothing in Lucknow.", 'the-fashion-frame' );
+	$category_desc  = __( "Explore our complete collection of readymade women's suits, designer kurtas, and kids' clothing in Lucknow.", 'the-fashion-frame' );
 } else {
 	$category_title = function_exists( 'woocommerce_page_title' ) ? woocommerce_page_title( false ) : get_the_title();
 }
@@ -47,7 +47,7 @@ if ( is_product_category() ) {
 	<?php if ( woocommerce_product_loop() ) : ?>
 
 		<!-- Archive Controls (Count & Sorting) -->
-		<div class="archive-controls flex justify-between items-center mb-8" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--color-surface-container-high); padding-bottom: 1rem;">
+		<div class="archive-controls">
 			<div class="archive-count font-body-md text-on-surface-variant">
 				<?php woocommerce_result_count(); ?>
 			</div>

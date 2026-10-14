@@ -26,7 +26,18 @@
 	<header id="masthead" class="site-header sticky top-0 z-50">
 		<div class="header-inner">
 			
-			<!-- Left Navigation Menu (Desktop) -->
+			<!-- Left: Brand Logo & Brand Name (Desktop & Mobile) -->
+			<div class="header-brand">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="header-brand-link" aria-label="<?php bloginfo( 'name' ); ?>">
+					<?php 
+					$header_logo_url = the_fashion_frame_get_logo_url();
+					?>
+					<img src="<?php echo esc_url( $header_logo_url ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="circular-logo site-logo-img" width="46" height="46" loading="eager" />
+					<span class="header-brand-name"><?php bloginfo( 'name' ); ?></span>
+				</a>
+			</div>
+
+			<!-- Center: Navigation Menu (Desktop) -->
 			<nav id="site-navigation" class="header-nav-desktop" aria-label="<?php esc_attr_e( 'Primary Menu', 'the-fashion-frame' ); ?>">
 				<?php
 				if ( has_nav_menu( 'primary' ) ) {
@@ -45,20 +56,15 @@
 				?>
 			</nav>
 
-			<!-- Centered Brand Logo / Monogram -->
-			<div class="header-brand">
-				<?php the_fashion_frame_site_logo( 'header-brand-logo', 54 ); ?>
-			</div>
-
-			<!-- Right Header Actions (Search, Wishlist, Cart, Mobile Menu) -->
+			<!-- Right: Header Actions (Search, Wishlist/Like, Cart/Bag, Mobile Menu) -->
 			<div class="header-actions">
 				<!-- Search Toggle Button -->
 				<button type="button" class="header-action-btn search-toggle-btn" aria-label="<?php esc_attr_e( 'Open Search', 'the-fashion-frame' ); ?>" aria-expanded="false">
 					<span class="material-symbols-outlined" aria-hidden="true">search</span>
 				</button>
 
-				<!-- Wishlist / Favorites -->
-				<a href="<?php echo esc_url( home_url( '/wishlist/' ) ); ?>" class="header-action-btn hidden md:flex" aria-label="<?php esc_attr_e( 'Wishlist', 'the-fashion-frame' ); ?>">
+				<!-- Wishlist / Favorites (Like) -->
+				<a href="<?php echo esc_url( home_url( '/wishlist/' ) ); ?>" class="header-action-btn header-action-wishlist" aria-label="<?php esc_attr_e( 'Wishlist', 'the-fashion-frame' ); ?>">
 					<span class="material-symbols-outlined" aria-hidden="true">favorite</span>
 				</a>
 
@@ -75,7 +81,7 @@
 				</a>
 
 				<!-- Mobile Hamburger Toggle -->
-				<button type="button" class="header-action-btn mobile-nav-toggle md:hidden" aria-label="<?php esc_attr_e( 'Toggle Navigation Menu', 'the-fashion-frame' ); ?>" aria-expanded="false" aria-controls="mobile-drawer">
+				<button type="button" class="header-action-btn mobile-nav-toggle" aria-label="<?php esc_attr_e( 'Toggle Navigation Menu', 'the-fashion-frame' ); ?>" aria-expanded="false" aria-controls="mobile-drawer">
 					<span class="material-symbols-outlined" aria-hidden="true">menu</span>
 				</button>
 			</div>
@@ -114,7 +120,7 @@
 		</nav>
 
 		<div class="mobile-drawer-footer">
-			<p class="font-label-caps text-secondary-fixed mb-2"><?php esc_html_e( "Readymade Men's, Women's & Kids' Clothing Store in Lucknow", 'the-fashion-frame' ); ?></p>
+			<p class="font-label-caps text-secondary-fixed mb-2"><?php esc_html_e( "Readymade Women's & Kids' Designer Clothing Store in Lucknow", 'the-fashion-frame' ); ?></p>
 			<p class="font-body-md" style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></p>
 		</div>
 	</div>
