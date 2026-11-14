@@ -94,7 +94,6 @@
 					} else {
 						?>
 						<ul class="footer-links">
-							<li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Contact Us', 'the-fashion-frame' ); ?></a></li>
 							<li><a href="<?php echo esc_url( home_url( '/shipping-returns/' ) ); ?>"><?php esc_html_e( 'Shipping & Delivery', 'the-fashion-frame' ); ?></a></li>
 							<li><a href="<?php echo esc_url( home_url( '/shipping-returns/#returns' ) ); ?>"><?php esc_html_e( 'Returns & Exchanges', 'the-fashion-frame' ); ?></a></li>
 							<li><a href="<?php echo esc_url( home_url( '/size-guide/' ) ); ?>"><?php esc_html_e( 'Size & Fit Guide', 'the-fashion-frame' ); ?></a></li>
@@ -106,21 +105,16 @@
 					?>
 				</div>
 
-				<!-- Column 4: Newsletter & Boutique Privilege -->
-				<div class="footer-col footer-col-newsletter">
-					<h4 class="footer-heading"><?php esc_html_e( 'Newsletter', 'the-fashion-frame' ); ?></h4>
-					<p class="footer-newsletter-text">
-						<?php esc_html_e( 'Subscribe to receive private preview invitations, seasonal style lookbooks, and exclusive boutique privileges.', 'the-fashion-frame' ); ?>
-					</p>
-					<form class="footer-newsletter-form" action="#" method="post">
-						<div class="footer-newsletter-input-wrap">
-							<input type="email" class="newsletter-input" placeholder="<?php esc_attr_e( 'Enter your email address', 'the-fashion-frame' ); ?>" required />
-							<button type="submit" class="newsletter-submit-btn" aria-label="<?php esc_attr_e( 'Subscribe', 'the-fashion-frame' ); ?>">
-								<span class="material-symbols-outlined">arrow_forward</span>
-							</button>
-						</div>
-					</form>
-					<div class="footer-store-timing">
+				<!-- Column 4: About & Contact -->
+				<div class="footer-col footer-col-about">
+					<h4 class="footer-heading"><?php esc_html_e( 'About & Contact', 'the-fashion-frame' ); ?></h4>
+					<ul class="footer-links">
+						<li><a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>"><?php esc_html_e( 'About Us', 'the-fashion-frame' ); ?></a></li>
+						<li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Contact Us', 'the-fashion-frame' ); ?></a></li>
+						<li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Flagship Boutique Experience', 'the-fashion-frame' ); ?></a></li>
+						<li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Complimentary Alterations', 'the-fashion-frame' ); ?></a></li>
+					</ul>
+					<div class="footer-store-timing" style="margin-top: 1.15rem;">
 						<span class="timing-title"><?php esc_html_e( 'Flagship Store Hours:', 'the-fashion-frame' ); ?></span>
 						<span class="timing-desc"><?php esc_html_e( 'Mon – Sun: 11:00 AM – 9:30 PM IST', 'the-fashion-frame' ); ?></span>
 					</div>

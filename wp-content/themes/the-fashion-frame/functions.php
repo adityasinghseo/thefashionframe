@@ -630,5 +630,22 @@ function the_fashion_frame_check_pincode_ajax() {
 add_action( 'wp_ajax_tff_check_pincode', 'the_fashion_frame_check_pincode_ajax' );
 add_action( 'wp_ajax_nopriv_tff_check_pincode', 'the_fashion_frame_check_pincode_ajax' );
 
+/**
+ * Direct template routing for /about-us/ custom page.
+ */
+function the_fashion_frame_about_us_template_include( $template ) {
+	$req_path = trim( parse_url( isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '', PHP_URL_PATH ), '/' );
+	if ( $req_path === 'about-us' ) {
+		$custom_template = get_template_directory() . '/page-about-us.php';
+		if ( file_exists( $custom_template ) ) {
+			status_header( 200 );
+			return $custom_template;
+		}
+	}
+	return $template;
+}
+add_filter( 'template_include', 'the_fashion_frame_about_us_template_include' );
+
+
 
 
