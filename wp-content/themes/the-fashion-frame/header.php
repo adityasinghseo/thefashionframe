@@ -26,14 +26,11 @@
 	<header id="masthead" class="site-header sticky top-0 z-50">
 		<div class="header-inner">
 			
-			<!-- Left: Brand Logo & Brand Name (Desktop & Mobile) -->
+			<!-- Left: Brand Logo Icon & Brand Name (Desktop & Mobile) -->
 			<div class="header-brand">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="header-brand-link" aria-label="<?php bloginfo( 'name' ); ?>">
-					<?php 
-					$header_logo_url = the_fashion_frame_get_logo_url();
-					?>
-					<img src="<?php echo esc_url( $header_logo_url ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="circular-logo site-logo-img" width="46" height="46" loading="eager" />
-					<span class="header-brand-name"><?php bloginfo( 'name' ); ?></span>
+					<img src="<?php echo esc_url( home_url( '/wp-content/uploads/2026/11/Golden-TF-Monogram-in-Hexagon.webp' ) ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="header-brand-logo-img" width="46" height="46" loading="eager" />
+					<span class="header-brand-name"><?php esc_html_e( 'The Fashion Frame', 'the-fashion-frame' ); ?></span>
 				</a>
 			</div>
 
@@ -120,7 +117,7 @@
 		</nav>
 
 		<div class="mobile-drawer-footer">
-			<p class="font-label-caps text-secondary-fixed mb-2"><?php esc_html_e( "Readymade Women's & Kids' Designer Clothing Store in Lucknow", 'the-fashion-frame' ); ?></p>
+			<p class="font-label-caps text-secondary-fixed mb-2"><?php esc_html_e( "Luxury Women's & Kids' Designer Clothing Store", 'the-fashion-frame' ); ?></p>
 			<p class="font-body-md" style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></p>
 		</div>
 	</div>

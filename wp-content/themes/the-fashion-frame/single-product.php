@@ -168,21 +168,16 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 				<h1 class="product-detail-title"><?php the_title(); ?></h1>
 
 				<!-- 3. Star Rating & Review Count (Only when actual review data exists) -->
-				<div class="product-rating-row">
-					<?php if ( $rating_count > 0 || $review_count > 0 ) : ?>
+				<?php if ( $rating_count > 0 || $review_count > 0 ) : ?>
+					<div class="product-rating-row">
 						<div class="product-star-rating">
 							<span class="material-symbols-outlined star-icon filled">star</span>
 							<strong class="rating-value"><?php echo esc_html( number_format( (float) $average_rating, 1 ) ); ?></strong>
 							<span class="rating-sep">|</span>
 							<a href="#reviews" class="rating-count-link"><?php echo esc_html( sprintf( _n( '%s Review', '%s Reviews', $review_count, 'the-fashion-frame' ), number_format_i18n( $review_count ) ) ); ?></a>
 						</div>
-					<?php else : ?>
-						<div class="product-star-rating subtle">
-							<span class="material-symbols-outlined star-icon">auto_awesome</span>
-							<span class="artisan-badge-text"><?php esc_html_e( 'Handcrafted Authentic Couture • Lucknow', 'the-fashion-frame' ); ?></span>
-						</div>
-					<?php endif; ?>
-				</div>
+					</div>
+				<?php endif; ?>
 
 				<!-- 4. Pricing & Dynamic Discount Block -->
 				<div class="product-price-box">
@@ -264,7 +259,7 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 					<div class="service-perk-item">
 						<span class="material-symbols-outlined">published_with_changes</span>
 						<div class="perk-text">
-							<strong><?php esc_html_e( '14-Day Easy Exchange', 'the-fashion-frame' ); ?></strong>
+							<strong><?php esc_html_e( '7-Day Easy Exchange', 'the-fashion-frame' ); ?></strong>
 							<span><?php esc_html_e( 'Doorstep reverse pick-up', 'the-fashion-frame' ); ?></span>
 						</div>
 					</div>
@@ -346,7 +341,7 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 									</tr>
 									<tr>
 										<th><?php esc_html_e( 'Craftsmanship', 'the-fashion-frame' ); ?></th>
-										<td><?php esc_html_e( 'Authentic Lucknowi Zari, Resham & Lace Embroidered detailing', 'the-fashion-frame' ); ?></td>
+										<td><?php esc_html_e( 'Intricate Artisanal Zari, Resham & Lace Embroidered detailing', 'the-fashion-frame' ); ?></td>
 									</tr>
 									<tr>
 										<th><?php esc_html_e( 'Occasion', 'the-fashion-frame' ); ?></th>
@@ -368,8 +363,8 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 							<span class="accordion-icon"><span class="material-symbols-outlined">expand_more</span></span>
 						</summary>
 						<div class="accordion-content">
-							<p><strong><?php esc_html_e( 'Sold & Marketed By:', 'the-fashion-frame' ); ?></strong> <?php esc_html_e( 'The Fashion Frame Couture, Hazratganj / Gomti Nagar, Lucknow, Uttar Pradesh 226001.', 'the-fashion-frame' ); ?></p>
-							<p style="margin-top: 0.6rem;"><strong><?php esc_html_e( '14-Day Return / Exchange Policy:', 'the-fashion-frame' ); ?></strong> <?php esc_html_e( 'We offer a seamless 14-day exchange on all unworn items with original tags and packaging intact. Doorstep reverse pick-up is arranged across India.', 'the-fashion-frame' ); ?></p>
+							<p><strong><?php esc_html_e( 'Sold & Marketed By:', 'the-fashion-frame' ); ?></strong> <?php esc_html_e( 'The Fashion Frame (Customer Support: fashionframelko@gmail.com | +91 92783 40090).', 'the-fashion-frame' ); ?></p>
+							<p style="margin-top: 0.6rem;"><strong><?php esc_html_e( '7-Day Return / Exchange Policy:', 'the-fashion-frame' ); ?></strong> <?php esc_html_e( 'We offer a seamless 7-day exchange on all unworn items with original tags and packaging intact. Doorstep reverse pick-up is arranged across India.', 'the-fashion-frame' ); ?></p>
 						</div>
 					</details>
 

@@ -20,38 +20,38 @@ if ( is_product_category() ) {
 	$category_desc  = term_description();
 } elseif ( is_shop() ) {
 	$category_title = function_exists( 'woocommerce_page_title' ) ? woocommerce_page_title( false ) : __( 'All Collections', 'the-fashion-frame' );
-	$category_desc  = __( "Explore our complete collection of readymade women's suits, designer kurtas, and kids' clothing in Lucknow.", 'the-fashion-frame' );
+	$category_desc  = __( "Explore our complete collection of readymade women's suits, designer kurtas, and kids' clothing.", 'the-fashion-frame' );
 } else {
 	$category_title = function_exists( 'woocommerce_page_title' ) ? woocommerce_page_title( false ) : get_the_title();
 }
 ?>
 
-<div class="archive-container site-container" style="padding-top: var(--section-gap-sm); padding-bottom: var(--section-gap-lg);">
+<div class="archive-container site-container">
 	
 	<!-- Category Archive Header -->
-	<header class="archive-header text-center mb-16 relative" style="margin-bottom: 4rem;">
-		<span class="font-label-caps text-on-surface-variant uppercase tracking-widest block mb-2">
+	<header class="archive-header text-center relative">
+		<span class="archive-eyebrow font-label-caps uppercase tracking-widest block">
 			<?php esc_html_e( 'Readymade Collection', 'the-fashion-frame' ); ?>
 		</span>
-		<h1 class="font-display-lg text-primary mb-4">
+		<h1 class="archive-title">
 			<?php echo esc_html( $category_title ); ?>
 		</h1>
 		<?php if ( ! empty( $category_desc ) ) : ?>
-			<div class="font-body-lg text-on-surface-variant max-w-2xl mx-auto" style="max-width: 650px; margin: 0 auto;">
+			<div class="archive-desc">
 				<?php echo wp_kses_post( $category_desc ); ?>
 			</div>
 		<?php endif; ?>
-		<div style="width: 48px; height: 1px; background: var(--color-secondary-fixed-dim); margin: 1.5rem auto 0;"></div>
+		<div class="archive-header-divider"></div>
 	</header>
 
 	<?php if ( woocommerce_product_loop() ) : ?>
 
 		<!-- Archive Controls (Count & Sorting) -->
 		<div class="archive-controls">
-			<div class="archive-count font-body-md text-on-surface-variant">
+			<div class="archive-count">
 				<?php woocommerce_result_count(); ?>
 			</div>
-			<div class="archive-ordering font-body-md">
+			<div class="archive-ordering">
 				<?php woocommerce_catalog_ordering(); ?>
 			</div>
 		</div>
@@ -69,7 +69,7 @@ if ( is_product_category() ) {
 		</div>
 
 		<!-- Pagination -->
-		<div class="archive-pagination" style="margin-top: 4rem; text-align: center;">
+		<div class="archive-pagination">
 			<?php woocommerce_pagination(); ?>
 		</div>
 

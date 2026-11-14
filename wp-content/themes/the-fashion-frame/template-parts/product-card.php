@@ -51,7 +51,7 @@ if ( $is_on_sale ) {
 			</div>
 		<?php elseif ( $is_featured ) : ?>
 			<div class="product-badge badge-handcrafted">
-				<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+				<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.2L12 17.5 5.7 21.2 8 14 2 9.4h7.6z"/></svg>
 				<span><?php esc_html_e( 'Featured', 'the-fashion-frame' ); ?></span>
 			</div>
 		<?php endif; ?>
@@ -68,7 +68,7 @@ if ( $is_on_sale ) {
 		<!-- Quick View / Single Product Hover Action -->
 		<div class="product-card-overlay">
 			<a href="<?php echo esc_url( $product_link ); ?>" class="product-quickview-btn" aria-label="<?php echo esc_attr( sprintf( __( 'View %s', 'the-fashion-frame' ), $title ) ); ?>">
-				<span class="material-symbols-outlined">visibility</span>
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
 			</a>
 		</div>
 	</div>

@@ -1,0 +1,360 @@
+/**
+ * The Fashion Frame - Clothing Size Selector Styles
+ */
+
+/* Hide native variations table rows & headers for size attribute */
+.product-purchase-box table.variations {
+  border: none;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.product-purchase-box table.variations tr {
+  display: block;
+  border: none;
+  margin-bottom: 0;
+}
+
+.product-purchase-box table.variations th.label {
+  display: none !important;
+}
+
+.product-purchase-box table.variations td.value {
+  display: block;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* Hide WooCommerce native select dropdown but keep it in DOM for WooCommerce scripts */
+.tff-native-select-wrap {
+  position: absolute !important;
+  opacity: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+}
+
+/* Hide default reset variations button */
+.product-purchase-box .reset_variations {
+  display: none !important;
+}
+
+/* Size Swatches Container */
+.tff-size-selector-component {
+  width: 100%;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.tff-size-swatches-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+/* Size Heading Row */
+.tff-size-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tff-size-title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.tff-size-heading {
+  font-family: var(--font-label, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary, #001106);
+}
+
+.tff-size-chosen-display {
+  font-family: var(--font-label, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-secondary, #755b00);
+  transition: opacity 0.2s ease;
+}
+
+.tff-size-guide-trigger {
+  background: none;
+  border: none;
+  color: var(--color-secondary, #755b00);
+  font-family: var(--font-label, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.tff-size-guide-trigger:hover {
+  color: var(--color-primary, #001106);
+}
+
+/* Button Group */
+.tff-size-buttons-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* Rectangular Size Buttons */
+.tff-size-btn {
+  min-width: 48px;
+  height: 42px;
+  padding: 0 0.85rem;
+  background-color: #ffffff;
+  color: var(--color-on-surface, #1b1c1c);
+  border: 1px solid var(--color-surface-dim, #dcd9d9);
+  border-radius: 4px;
+  font-family: var(--font-label, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  position: relative;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Hover state */
+.tff-size-btn:hover:not(:disabled):not(.is-disabled) {
+  border-color: var(--color-primary, #001106);
+  background-color: var(--color-surface-container-low, #f6f3f2);
+  color: var(--color-primary, #001106);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 17, 6, 0.08);
+}
+
+/* Focus Visible state for accessibility */
+.tff-size-btn:focus-visible {
+  outline: 2px solid var(--color-primary, #001106);
+  outline-offset: 2px;
+}
+
+/* Selected Active State */
+.tff-size-btn.is-selected {
+  background-color: var(--color-primary, #001106) !important;
+  color: #ffffff !important;
+  border-color: var(--color-primary, #001106) !important;
+  box-shadow: 0 4px 12px rgba(0, 17, 6, 0.25) !important;
+  transform: translateY(-1px);
+}
+
+/* Disabled / Out of Stock State */
+.tff-size-btn:disabled,
+.tff-size-btn.is-disabled {
+  background-color: var(--color-surface-container, #f0eded) !important;
+  color: var(--color-on-tertiary-container, #8b8a84) !important;
+  border-color: var(--color-surface-variant, #e4e2e1) !important;
+  cursor: not-allowed !important;
+  opacity: 0.55;
+  text-decoration: line-through;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Validation Message */
+.tff-size-validation-msg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.75rem;
+  background-color: #fff0f0;
+  border: 1px solid #ffd1d1;
+  border-radius: 4px;
+  color: var(--color-error, #ba1a1a);
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.35rem;
+  animation: tffShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.tff-size-validation-msg .material-symbols-outlined {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Shake Animation */
+@keyframes tffShake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+  40%, 60% { transform: translate3d(3px, 0, 0); }
+}
+
+/* Subtle highlight pulse on button group when error triggers */
+.tff-size-buttons-group.has-error .tff-size-btn:not(.is-disabled) {
+  border-color: rgba(186, 26, 26, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .tff-size-btn {
+    min-width: 44px;
+    height: 40px;
+    padding: 0 0.65rem;
+    font-size: 0.82rem;
+  }
+}
+
+/* Button & Quantity Row Alignment */
+.product-purchase-box .woocommerce-variation-add-to-cart,
+.product-purchase-box form.cart:not(.variations_form) {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 0.75rem !important;
+  width: 100% !important;
+  margin-top: 0.75rem !important;
+}
+
+.product-purchase-box .quantity {
+  flex: 0 0 120px !important;
+  width: 120px !important;
+  height: 50px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  border: 1px solid var(--color-surface-dim, #dcd9d9) !important;
+  border-radius: 4px !important;
+  background: #ffffff !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.product-purchase-box .quantity input.qty {
+  width: 44px !important;
+  height: 100% !important;
+  border: none !important;
+  text-align: center !important;
+  font-family: var(--font-body, sans-serif) !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  color: var(--color-primary, #001106) !important;
+  background: transparent !important;
+  outline: none !important;
+  padding: 0 !important;
+}
+
+.product-purchase-box .quantity .qty-btn {
+  width: 38px !important;
+  height: 100% !important;
+  background: #faf8f6 !important;
+  border: none !important;
+  font-size: 1.2rem !important;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+  color: var(--color-primary, #001106) !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.product-purchase-box button.single_add_to_cart_button {
+  flex: 1 1 200px !important;
+  height: 50px !important;
+  background-color: var(--color-primary, #001106) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--color-primary, #001106) !important;
+  border-radius: 4px !important;
+  font-family: var(--font-label, sans-serif) !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+  box-shadow: 0 4px 14px rgba(0, 17, 6, 0.18) !important;
+}
+
+.product-purchase-box button.single_add_to_cart_button:hover {
+  background-color: #0d2818 !important;
+  border-color: #0d2818 !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(0, 17, 6, 0.28) !important;
+}
+
+.product-purchase-box .product-buy-now-btn {
+  flex: 1 1 180px !important;
+  height: 50px !important;
+  background-color: var(--color-secondary-container, #fed255) !important;
+  color: var(--color-primary, #001106) !important;
+  border: 1px solid var(--color-secondary-fixed-dim, #ecc246) !important;
+  border-radius: 4px !important;
+  font-family: var(--font-label, sans-serif) !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.4rem !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  box-shadow: 0 4px 14px rgba(0, 17, 6, 0.12) !important;
+}
+
+.product-purchase-box .product-buy-now-btn:hover {
+  background-color: var(--color-secondary-fixed, #ffe08e) !important;
+  color: #001106 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(0, 17, 6, 0.2) !important;
+}
+
+/* Mobile Buttons Alignment */
+@media (max-width: 768px) {
+  .product-purchase-box .woocommerce-variation-add-to-cart,
+  .product-purchase-box form.cart:not(.variations_form) {
+    gap: 0.65rem !important;
+  }
+  .product-purchase-box .quantity {
+    flex: 0 0 110px !important;
+    width: 110px !important;
+    height: 48px !important;
+  }
+  .product-purchase-box button.single_add_to_cart_button {
+    flex: 1 1 auto !important;
+    height: 48px !important;
+    width: auto !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.08em !important;
+  }
+  .product-purchase-box .product-buy-now-btn {
+    flex: 1 0 100% !important;
+    width: 100% !important;
+    height: 48px !important;
+    margin-top: 0.25rem !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.1em !important;
+  }
+}
+

@@ -913,32 +913,69 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (!pincodeInput || !pincodeResult) return;
 		var val = pincodeInput.value.trim();
 		if (!/^[1-9][0-9]{5}$/.test(val)) {
-			pincodeResult.style.display = 'flex';
-			pincodeResult.className = 'pincode-result-msg error';
-			pincodeResult.innerHTML = '<span class="material-symbols-outlined text-[16px]">error</span><span>Please enter a valid 6-digit Indian PIN code.</span>';
+			pincodeResult.style.display = 'block';
+			pincodeResult.className = 'pincode-result-msg error is-error';
+			pincodeResult.innerHTML = '<div class="pincode-result-header"><span class="material-symbols-outlined text-[#b91c1c] text-[18px]">error</span><div class="pincode-result-content"><span class="pincode-error-title">Please enter a valid 6-digit Indian PIN code.</span></div></div>';
 			return;
 		}
 
 		pincodeBtn.disabled = true;
 		pincodeBtn.textContent = '...';
 
-		setTimeout(function() {
+		var ajaxUrl = (window.theFashionFrameParams && window.theFashionFrameParams.ajaxUrl) ? window.theFashionFrameParams.ajaxUrl : '/wp-admin/admin-ajax.php';
+		var requestUrl = ajaxUrl + (ajaxUrl.indexOf('?') !== -1 ? '&' : '?') + 'action=tff_check_pincode&pincode=' + encodeURIComponent(val);
+
+		fetch(requestUrl, {
+			method: 'GET',
+			headers: { 'Accept': 'application/json' }
+		})
+		.then(function(res) { return res.json(); })
+		.then(function(res) {
 			pincodeBtn.disabled = false;
 			pincodeBtn.textContent = 'CHECK';
-			pincodeResult.style.display = 'flex';
-			pincodeResult.className = 'pincode-result-msg success';
 
-			// Calculate delivery date 3-4 days out
-			var deliveryDate = new Date();
-			deliveryDate.setDate(deliveryDate.getDate() + 4);
-			var dateOptions = { weekday: 'short', month: 'short', day: 'numeric' };
-			var dateStr = deliveryDate.toLocaleDateString('en-IN', dateOptions);
+			if (res && res.success && res.data) {
+				var d = res.data;
+				pincodeResult.style.display = 'block';
+				pincodeResult.className = 'pincode-result-msg success is-valid';
 
-			pincodeResult.innerHTML = '<span class="material-symbols-outlined text-[16px] text-[#002B1B]">verified</span><span>Expected delivery by <strong>' + dateStr + '</strong>. Free Express Shipping & COD available!</span>';
-			try {
-				localStorage.setItem('tff_pincode', val);
-			} catch(e) {}
-		}, 300);
+				var html = '<div class="pincode-result-header">';
+				html += '<span class="material-symbols-outlined text-[#002B1B] text-[20px]">verified</span>';
+				html += '<div class="pincode-result-content">';
+				html += '<div class="pincode-delivery-date">Estimated delivery by <strong>' + d.estimated_date + '</strong></div>';
+				if (d.location) {
+					html += '<div class="pincode-location-sub">Delivering to <strong>' + d.location + '</strong> via ' + d.courier + '</div>';
+				} else {
+					html += '<div class="pincode-location-sub">Fulfilled via ' + d.courier + '</div>';
+				}
+				html += '<div class="pincode-perks-pills">';
+				if (d.cod_available) {
+					html += '<span class="pincode-pill pill-cod"><span class="material-symbols-outlined text-[13px]">payments</span> COD Available</span>';
+				} else {
+					html += '<span class="pincode-pill pill-prepaid"><span class="material-symbols-outlined text-[13px]">credit_card</span> Prepaid Only</span>';
+				}
+				html += '<span class="pincode-pill pill-shipping"><span class="material-symbols-outlined text-[13px]">local_shipping</span> ' + (d.shipping_label || 'Free Express Shipping') + '</span>';
+				html += '</div>';
+				html += '</div></div>';
+
+				pincodeResult.innerHTML = html;
+				try {
+					localStorage.setItem('tff_pincode', val);
+				} catch(e) {}
+			} else {
+				pincodeResult.style.display = 'block';
+				pincodeResult.className = 'pincode-result-msg error is-error';
+				var errMsg = (res && res.data && res.data.message) ? res.data.message : 'Postal PIN could not be verified at this time.';
+				pincodeResult.innerHTML = '<div class="pincode-result-header"><span class="material-symbols-outlined text-[#b91c1c] text-[18px]">error</span><div class="pincode-result-content"><span class="pincode-error-title">' + errMsg + '</span></div></div>';
+			}
+		})
+		.catch(function(err) {
+			pincodeBtn.disabled = false;
+			pincodeBtn.textContent = 'CHECK';
+			pincodeResult.style.display = 'block';
+			pincodeResult.className = 'pincode-result-msg error is-error';
+			pincodeResult.innerHTML = '<div class="pincode-result-header"><span class="material-symbols-outlined text-[#b91c1c] text-[18px]">error</span><div class="pincode-result-content"><span class="pincode-error-title">Unable to reach delivery network. Please try again.</span></div></div>';
+		});
 	}
 
 	if (pincodeBtn) {
@@ -973,5 +1010,32 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 		}
 	});
+
+	// 14. Customer Reviews Carousel Smooth Scrolling
+	var reviewsTrack = document.getElementById('customer-reviews-track');
+	var reviewsPrevBtn = document.getElementById('reviews-prev-btn');
+	var reviewsNextBtn = document.getElementById('reviews-next-btn');
+
+	if (reviewsTrack && (reviewsPrevBtn || reviewsNextBtn)) {
+		var getScrollDistance = function () {
+			var card = reviewsTrack.querySelector('.review-card');
+			if (card) {
+				return card.offsetWidth + 28; // card width + gap
+			}
+			return reviewsTrack.clientWidth * 0.75;
+		};
+
+		if (reviewsPrevBtn) {
+			reviewsPrevBtn.addEventListener('click', function () {
+				reviewsTrack.scrollBy({ left: -getScrollDistance(), behavior: 'smooth' });
+			});
+		}
+
+		if (reviewsNextBtn) {
+			reviewsNextBtn.addEventListener('click', function () {
+				reviewsTrack.scrollBy({ left: getScrollDistance(), behavior: 'smooth' });
+			});
+		}
+	}
 });
 

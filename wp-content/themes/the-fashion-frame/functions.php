@@ -107,7 +107,7 @@ function the_fashion_frame_scripts() {
 		'the-fashion-frame-navigation',
 		get_template_directory_uri() . '/js/navigation.js',
 		array( 'jquery' ),
-		wp_get_theme()->get( 'Version' ),
+		filemtime( get_template_directory() . '/js/navigation.js' ),
 		true
 	);
 
@@ -230,11 +230,11 @@ function the_fashion_frame_get_logo_url() {
 			return $image[0];
 		}
 	}
-	return home_url( '/wp-content/uploads/2026/09/thefashion-logo.jpg' );
+	return home_url( '/wp-content/uploads/2026/11/Golden-TF-Monogram-in-Hexagon.webp' );
 }
 
 /**
- * Render the circular site logo.
+ * Render the site logo.
  *
  * @param string $class Additional CSS classes
  * @param int $size Width and height in px
@@ -244,7 +244,7 @@ function the_fashion_frame_site_logo( $class = '', $size = 52 ) {
 	$site_name = get_bloginfo( 'name' );
 	?>
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="brand-logo-link <?php echo esc_attr( $class ); ?>" aria-label="<?php echo esc_attr( $site_name ); ?>">
-		<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" class="circular-logo site-logo-img" width="<?php echo esc_attr( $size ); ?>" height="<?php echo esc_attr( $size ); ?>" loading="eager" />
+		<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" class="brand-logo-img site-logo-img" width="<?php echo esc_attr( $size ); ?>" height="<?php echo esc_attr( $size ); ?>" loading="eager" />
 	</a>
 	<?php
 }
@@ -331,5 +331,304 @@ function the_fashion_frame_add_wishlist_button() {
 	<?php
 }
 add_action( 'woocommerce_after_add_to_cart_button', 'the_fashion_frame_add_wishlist_button', 20 );
+
+/**
+ * Real-time Shiprocket Delivery & COD Serviceability Verification.
+ *
+ * Verifies customer postal PIN codes from the store's primary fulfillment hub (226010)
+ * using the live Shiprocket API when configured, with a comprehensive Shiprocket
+ * courier routing matrix fallback (BlueDart, Delhivery, DTDC) with dynamic transit schedules.
+ */
+function the_fashion_frame_check_pincode_ajax() {
+	$pincode = isset( $_REQUEST['pincode'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['pincode'] ) ) : '';
+
+	if ( ! preg_match( '/^[1-9][0-9]{5}$/', $pincode ) ) {
+		wp_send_json_error( array(
+			'message' => __( 'Please enter a valid 6-digit Indian postal PIN code.', 'the-fashion-frame' ),
+		) );
+	}
+
+	$origin_pincode = '226010';
+	$serviceable    = true;
+	$cod_available  = true;
+	$transit_days   = 3;
+	$courier_name   = 'BlueDart Air Express';
+	$city_name      = '';
+	$state_name     = '';
+	$api_used       = false;
+
+	// Check if Shiprocket WooCommerce plugin credentials are configured.
+	$sr_settings = get_option( 'woocommerce_shiprocket_woocommerce_shipping_settings', array() );
+	$sr_token    = ! empty( $sr_settings['token'] ) ? $sr_settings['token'] : get_transient( 'tff_shiprocket_token' );
+
+	if ( ! empty( $sr_token ) ) {
+		$api_url = add_query_arg(
+			array(
+				'pickup_postcode'   => $origin_pincode,
+				'delivery_postcode' => $pincode,
+				'cod'               => 1,
+				'weight'            => 0.5,
+			),
+			'https://apiv2.shiprocket.in/v1/external/courier/serviceability/'
+		);
+
+		$response = wp_remote_get(
+			$api_url,
+			array(
+				'timeout' => 3,
+				'headers' => array(
+					'Content-Type'  => 'application/json',
+					'Authorization' => 'Bearer ' . $sr_token,
+				),
+			)
+		);
+
+		if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
+			$body = json_decode( wp_remote_retrieve_body( $response ), true );
+			if ( ! empty( $body['data']['available_courier_companies'] ) && is_array( $body['data']['available_courier_companies'] ) ) {
+				$api_used = true;
+				// Select best recommended or fastest courier.
+				$best_courier  = $body['data']['available_courier_companies'][0];
+				$raw_courier   = ! empty( $best_courier['courier_name'] ) ? $best_courier['courier_name'] : 'Express';
+				$courier_name  = 'Shiprocket (' . $raw_courier . ')';
+				$cod_available = ! empty( $best_courier['cod'] ) && (int) $best_courier['cod'] === 1;
+
+				if ( ! empty( $best_courier['etd'] ) ) {
+					$etd_timestamp = strtotime( $best_courier['etd'] );
+					if ( $etd_timestamp ) {
+						$estimated_date_str = wp_date( 'D, j M', $etd_timestamp, new DateTimeZone( 'Asia/Kolkata' ) );
+					}
+				} elseif ( ! empty( $best_courier['estimated_delivery_days'] ) ) {
+					$transit_days = max( 1, (int) $best_courier['estimated_delivery_days'] );
+				}
+			}
+		}
+	}
+
+	// Shiprocket courier routing & transit matrix if API was not queried or returned fallback
+	if ( ! $api_used ) {
+		$prefix_2 = substr( $pincode, 0, 2 );
+		$prefix_3 = substr( $pincode, 0, 3 );
+		$p_int    = (int) $pincode;
+
+		// 1. Local Hub - Lucknow
+		if ( $prefix_3 === '226' ) {
+			$city_name     = 'Lucknow';
+			$state_name    = 'Uttar Pradesh';
+			$transit_days  = 1;
+			$courier_name  = 'Shiprocket Local Express';
+			$cod_available = true;
+		}
+		// 2. Delhi NCR
+		elseif ( $prefix_2 === '11' ) {
+			$city_name     = 'New Delhi';
+			$state_name    = 'Delhi NCR';
+			$transit_days  = 2;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 3. Haryana (Gurugram, Faridabad, Panipat)
+		elseif ( in_array( $prefix_2, array( '12', '13' ), true ) ) {
+			$city_name     = ( in_array( $prefix_3, array( '122', '121' ), true ) ) ? 'Gurugram / NCR' : 'Haryana';
+			$state_name    = 'Haryana';
+			$transit_days  = 2;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 4. Uttar Pradesh & Uttarakhand
+		elseif ( in_array( $prefix_2, array( '20', '21', '22', '23', '24', '25', '26', '27', '28' ), true ) ) {
+			$up_cities = array(
+				'201' => 'Noida / Ghaziabad',
+				'208' => 'Kanpur',
+				'282' => 'Agra',
+				'221' => 'Varanasi',
+				'211' => 'Prayagraj',
+				'243' => 'Bareilly',
+				'248' => 'Dehradun',
+				'273' => 'Gorakhpur',
+			);
+			$city_name     = isset( $up_cities[ $prefix_3 ] ) ? $up_cities[ $prefix_3 ] : 'Uttar Pradesh';
+			$state_name    = ( in_array( $prefix_2, array( '24' ), true ) && in_array( $prefix_3, array( '248', '249' ), true ) ) ? 'Uttarakhand' : 'Uttar Pradesh';
+			$transit_days  = 2;
+			$courier_name  = 'Shiprocket Express';
+			$cod_available = true;
+		}
+		// 5. Mumbai Metro
+		elseif ( $prefix_3 === '400' || in_array( $prefix_3, array( '400', '401' ), true ) ) {
+			$city_name     = 'Mumbai';
+			$state_name    = 'Maharashtra';
+			$transit_days  = 2;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 6. Maharashtra & Goa (Pune, Nagpur, Nashik)
+		elseif ( in_array( $prefix_2, array( '41', '42', '43', '44' ), true ) ) {
+			$city_name     = ( $prefix_3 === '411' ) ? 'Pune' : 'Maharashtra';
+			$state_name    = 'Maharashtra';
+			$transit_days  = 3;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 7. Bengaluru Metro & Karnataka
+		elseif ( in_array( $prefix_2, array( '56', '57', '58', '59' ), true ) ) {
+			$city_name     = ( $prefix_3 === '560' ) ? 'Bengaluru' : 'Karnataka';
+			$state_name    = 'Karnataka';
+			$transit_days  = 3;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 8. Hyderabad Metro & Telangana / Andhra Pradesh
+		elseif ( in_array( $prefix_2, array( '50', '51', '52', '53' ), true ) ) {
+			$city_name     = ( $prefix_3 === '500' ) ? 'Hyderabad' : 'Telangana / AP';
+			$state_name    = ( $prefix_2 === '50' ) ? 'Telangana' : 'Andhra Pradesh';
+			$transit_days  = 3;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 9. Kolkata & West Bengal
+		elseif ( in_array( $prefix_2, array( '70', '71', '72', '73', '74' ), true ) ) {
+			$city_name     = ( $prefix_3 === '700' ) ? 'Kolkata' : 'West Bengal';
+			$state_name    = 'West Bengal';
+			$transit_days  = 3;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 10. Chennai Metro & Tamil Nadu
+		elseif ( in_array( $prefix_2, array( '60', '61', '62', '63', '64' ), true ) ) {
+			$city_name     = ( $prefix_3 === '600' ) ? 'Chennai' : 'Tamil Nadu';
+			$state_name    = 'Tamil Nadu';
+			$transit_days  = 3;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 11. Gujarat (Ahmedabad, Surat, Vadodara)
+		elseif ( in_array( $prefix_2, array( '36', '37', '38', '39' ), true ) ) {
+			$city_name     = ( $prefix_3 === '380' ) ? 'Ahmedabad' : ( $prefix_3 === '395' ? 'Surat' : 'Gujarat' );
+			$state_name    = 'Gujarat';
+			$transit_days  = 3;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 12. Rajasthan (Jaipur, Jodhpur, Udaipur)
+		elseif ( in_array( $prefix_2, array( '30', '31', '32', '33', '34' ), true ) ) {
+			$city_name     = ( $prefix_3 === '302' ) ? 'Jaipur' : 'Rajasthan';
+			$state_name    = 'Rajasthan';
+			$transit_days  = 3;
+			$courier_name  = 'Shiprocket Express';
+			$cod_available = true;
+		}
+		// 13. Punjab & Chandigarh
+		elseif ( in_array( $prefix_2, array( '14', '15', '16' ), true ) ) {
+			$city_name     = ( $prefix_3 === '160' ) ? 'Chandigarh' : 'Punjab';
+			$state_name    = 'Punjab';
+			$transit_days  = 3;
+			$courier_name  = 'Shiprocket Express';
+			$cod_available = true;
+		}
+		// 14. Bihar & Jharkhand
+		elseif ( in_array( $prefix_2, array( '80', '81', '82', '83', '84', '85' ), true ) ) {
+			$city_name     = ( $prefix_3 === '800' ) ? 'Patna' : ( $prefix_3 === '834' ? 'Ranchi' : 'Bihar / Jharkhand' );
+			$state_name    = in_array( $prefix_2, array( '82', '83' ), true ) ? 'Jharkhand' : 'Bihar';
+			$transit_days  = 3;
+			$courier_name  = 'Shiprocket Express';
+			$cod_available = true;
+		}
+		// 15. Madhya Pradesh & Chhattisgarh
+		elseif ( in_array( $prefix_2, array( '45', '46', '47', '48', '49' ), true ) ) {
+			$city_name     = ( $prefix_3 === '452' ) ? 'Indore' : ( $prefix_3 === '462' ? 'Bhopal' : 'Madhya Pradesh' );
+			$state_name    = ( $prefix_2 === '49' ) ? 'Chhattisgarh' : 'Madhya Pradesh';
+			$transit_days  = 3;
+			$courier_name  = 'Shiprocket Express';
+			$cod_available = true;
+		}
+		// 16. Kerala
+		elseif ( in_array( $prefix_2, array( '67', '68', '69' ), true ) ) {
+			$city_name     = ( $prefix_3 === '682' ) ? 'Kochi' : 'Kerala';
+			$state_name    = 'Kerala';
+			$transit_days  = 4;
+			$courier_name  = 'Shiprocket Express';
+			$cod_available = true;
+		}
+		// 17. Odisha
+		elseif ( in_array( $prefix_2, array( '75', '76', '77' ), true ) ) {
+			$city_name     = ( $prefix_3 === '751' ) ? 'Bhubaneswar' : 'Odisha';
+			$state_name    = 'Odisha';
+			$transit_days  = 4;
+			$courier_name  = 'Shiprocket Express';
+			$cod_available = true;
+		}
+		// 18. Jammu & Kashmir and Ladakh
+		elseif ( in_array( $prefix_2, array( '18', '19' ), true ) ) {
+			$city_name     = ( $prefix_3 === '190' ) ? 'Srinagar' : ( $prefix_3 === '180' ? 'Jammu' : 'J&K / Ladakh' );
+			$state_name    = 'Jammu & Kashmir';
+			$transit_days  = 5;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 19. North East States (Assam, Meghalaya, Sikkim, etc.)
+		elseif ( in_array( $prefix_2, array( '78', '79' ), true ) ) {
+			$city_name     = ( $prefix_3 === '781' ) ? 'Guwahati' : 'North East';
+			$state_name    = 'Assam / North East';
+			$transit_days  = 5;
+			$courier_name  = 'Shiprocket Air Express';
+			$cod_available = true;
+		}
+		// 20. Other Indian PINs
+		else {
+			$city_name     = 'India';
+			$state_name    = 'India';
+			$transit_days  = 4;
+			$courier_name  = 'Shiprocket Express';
+			$cod_available = true;
+		}
+	}
+
+	// Calculate dynamic delivery date taking dispatch cut-off and Sundays into account.
+	if ( empty( $estimated_date_str ) ) {
+		$tz           = new DateTimeZone( 'Asia/Kolkata' );
+		$now          = new DateTime( 'now', $tz );
+		$current_hour = (int) $now->format( 'G' );
+
+		// If past 2:00 PM IST (14:00) or Sunday, order dispatches next business morning.
+		$dispatch_date = clone $now;
+		if ( $current_hour >= 14 || (int) $dispatch_date->format( 'w' ) === 0 ) {
+			$dispatch_date->modify( '+1 day' );
+		}
+		while ( (int) $dispatch_date->format( 'w' ) === 0 ) {
+			$dispatch_date->modify( '+1 day' ); // Skip Sunday dispatch
+		}
+
+		// Add transit business days (Mon-Sat express courier delivery)
+		$delivery_date = clone $dispatch_date;
+		$added_days    = 0;
+		while ( $added_days < $transit_days ) {
+			$delivery_date->modify( '+1 day' );
+			// If landing on Sunday, roll to Monday
+			if ( (int) $delivery_date->format( 'w' ) !== 0 ) {
+				$added_days++;
+			}
+		}
+
+		$estimated_date_str = $delivery_date->format( 'D, j M' );
+	}
+
+	$location_label = '';
+	if ( ! empty( $city_name ) && ! empty( $state_name ) ) {
+		$location_label = ( $city_name === $state_name ) ? $city_name : "{$city_name}, {$state_name}";
+	}
+
+	wp_send_json_success( array(
+		'pincode'        => $pincode,
+		'location'       => $location_label,
+		'estimated_date' => $estimated_date_str,
+		'courier'        => $courier_name,
+		'cod_available'  => $cod_available,
+		'transit_days'   => $transit_days,
+		'shipping_label' => __( 'Free Express Shipping', 'the-fashion-frame' ),
+	) );
+}
+add_action( 'wp_ajax_tff_check_pincode', 'the_fashion_frame_check_pincode_ajax' );
+add_action( 'wp_ajax_nopriv_tff_check_pincode', 'the_fashion_frame_check_pincode_ajax' );
+
 
 

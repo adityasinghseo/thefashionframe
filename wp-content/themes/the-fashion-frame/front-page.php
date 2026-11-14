@@ -87,7 +87,7 @@ if ( function_exists( 'wc_get_products' ) ) {
 		<span class="hero-tagline"><?php esc_html_e( 'ARTISANAL LUXURY & COUTURE', 'the-fashion-frame' ); ?></span>
 		<h1 class="font-display-lg hero-title"><?php esc_html_e( "Artisanal Women's Suits & Readymade Couture", 'the-fashion-frame' ); ?></h1>
 		<p class="font-body-lg hero-subtitle">
-			<?php esc_html_e( "Explore premium readymade women's suit sets, designer kurta ensembles, and handcrafted festive attire in Lucknow. Pure fabrics tailored for royal elegance and everyday grace.", 'the-fashion-frame' ); ?>
+			<?php esc_html_e( 'Explore premium readymade women\'s suit sets, designer kurta ensembles, and handcrafted festive attire. Pure fabrics tailored for royal elegance and everyday grace.', 'the-fashion-frame' ); ?>
 		</p>
 		<div class="hero-actions">
 			<a href="<?php echo esc_url( $womens_link ); ?>" class="btn-primary hero-btn">
@@ -262,22 +262,247 @@ if ( function_exists( 'wc_get_products' ) ) {
 	<?php endif; ?>
 </section>
 
-<!-- 4. Brand Story Strip -->
-<section class="brand-story-strip">
-	<div class="brand-story-motif">
-		<svg class="w-full h-full" fill="currentColor" preserveAspectRatio="none" viewBox="0 0 100 100">
-			<pattern id="story-motif" width="20" height="20" patternUnits="userSpaceOnUse">
-				<circle cx="10" cy="10" r="2" opacity="0.5"></circle>
-				<path d="M5 10 Q10 5 15 10 Q10 15 5 10" opacity="0.3"></path>
-			</pattern>
-			<rect width="100%" height="100%" fill="url(#story-motif)"></rect>
-		</svg>
+<!-- 3.5 Customer Reviews Showcase (Polaroid Stacked UGC) -->
+<section class="customer-reviews-section" aria-labelledby="customer-reviews-title">
+	<div class="site-container customer-reviews-container">
+		<h2 id="customer-reviews-title" class="customer-reviews-title">
+			<?php esc_html_e( 'CUSTOMER REVIEWS', 'the-fashion-frame' ); ?>
+		</h2>
+
+		<div class="customer-reviews-carousel-wrap">
+			<!-- Prev Button -->
+			<button type="button" class="review-nav-btn review-prev" id="reviews-prev-btn" aria-label="<?php esc_attr_e( 'Previous reviews', 'the-fashion-frame' ); ?>">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<polyline points="15 18 9 12 15 6"></polyline>
+				</svg>
+			</button>
+
+			<!-- Carousel Track -->
+			<div class="customer-reviews-track" id="customer-reviews-track">
+				
+				<!-- Review 1 -->
+				<div class="review-card">
+					<p class="review-quote">
+						<?php esc_html_e( 'If I ever have to describe love, it would be The Fashion Frame Suits ❤️', 'the-fashion-frame' ); ?>
+					</p>
+					<div class="review-photo-stack">
+						<div class="review-photo-frame">
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/reviews/customer-1.png' ); ?>" 
+								 alt="<?php esc_attr_e( 'Customer review by Manvi Jha', 'the-fashion-frame' ); ?>" 
+								 class="review-photo-img" 
+								 width="263" 
+								 height="279" 
+								 loading="lazy" />
+						</div>
+					</div>
+					<div class="review-meta">
+						<div class="review-stars" aria-label="<?php esc_attr_e( '5 out of 5 stars', 'the-fashion-frame' ); ?>">★★★★★</div>
+						<span class="review-author"><?php esc_html_e( '_Manvi Jha', 'the-fashion-frame' ); ?></span>
+					</div>
+				</div>
+
+				<!-- Review 2 -->
+				<div class="review-card">
+					<p class="review-quote">
+						<?php esc_html_e( 'No words needed, The Fashion Frame outfit says it all. 🧿', 'the-fashion-frame' ); ?>
+					</p>
+					<div class="review-photo-stack">
+						<div class="review-photo-frame">
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/reviews/customer-2.png' ); ?>" 
+								 alt="<?php esc_attr_e( 'Customer review by Monika Jain', 'the-fashion-frame' ); ?>" 
+								 class="review-photo-img" 
+								 width="263" 
+								 height="279" 
+								 loading="lazy" />
+						</div>
+					</div>
+					<div class="review-meta">
+						<div class="review-stars" aria-label="<?php esc_attr_e( '5 out of 5 stars', 'the-fashion-frame' ); ?>">★★★★★</div>
+						<span class="review-author"><?php esc_html_e( '_Monika Jain', 'the-fashion-frame' ); ?></span>
+					</div>
+				</div>
+
+				<!-- Review 3 -->
+				<div class="review-card">
+					<p class="review-quote">
+						<?php esc_html_e( 'Getting ready felt like a whole bollywood movie scene with The Fashion Frame suit ✨🤍', 'the-fashion-frame' ); ?>
+					</p>
+					<div class="review-photo-stack">
+						<div class="review-photo-frame">
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/reviews/customer-3.png' ); ?>" 
+								 alt="<?php esc_attr_e( 'Customer review by Apeksha Jain', 'the-fashion-frame' ); ?>" 
+								 class="review-photo-img" 
+								 width="263" 
+								 height="279" 
+								 loading="lazy" />
+						</div>
+					</div>
+					<div class="review-meta">
+						<div class="review-stars" aria-label="<?php esc_attr_e( '5 out of 5 stars', 'the-fashion-frame' ); ?>">★★★★★</div>
+						<span class="review-author"><?php esc_html_e( '_Apeksha Jain', 'the-fashion-frame' ); ?></span>
+					</div>
+				</div>
+
+				<!-- Review 4 -->
+				<div class="review-card">
+					<p class="review-quote">
+						<?php esc_html_e( 'My summer & festive wardrobe just got an upgrade 🌸 Breathable, breezy & royal, Thanks to The Fashion Frame.', 'the-fashion-frame' ); ?>
+					</p>
+					<div class="review-photo-stack">
+						<div class="review-photo-frame">
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/reviews/customer-4.png' ); ?>" 
+								 alt="<?php esc_attr_e( 'Customer review by Bharti Jain', 'the-fashion-frame' ); ?>" 
+								 class="review-photo-img" 
+								 width="263" 
+								 height="279" 
+								 loading="lazy" />
+						</div>
+					</div>
+					<div class="review-meta">
+						<div class="review-stars" aria-label="<?php esc_attr_e( '5 out of 5 stars', 'the-fashion-frame' ); ?>">★★★★★</div>
+						<span class="review-author"><?php esc_html_e( '__Bharti Jain', 'the-fashion-frame' ); ?></span>
+					</div>
+				</div>
+
+				<!-- Review 5 -->
+				<div class="review-card">
+					<p class="review-quote">
+						<?php esc_html_e( 'The Fashion Frame kurta sets are so comfy, so pretty, and instantly make you feel royal the moment you wear them! ✨', 'the-fashion-frame' ); ?>
+					</p>
+					<div class="review-photo-stack">
+						<div class="review-photo-frame">
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/reviews/customer-5.png' ); ?>" 
+								 alt="<?php esc_attr_e( 'Customer review by Aprajita Verma', 'the-fashion-frame' ); ?>" 
+								 class="review-photo-img" 
+								 width="263" 
+								 height="279" 
+								 loading="lazy" />
+						</div>
+					</div>
+					<div class="review-meta">
+						<div class="review-stars" aria-label="<?php esc_attr_e( '5 out of 5 stars', 'the-fashion-frame' ); ?>">★★★★★</div>
+						<span class="review-author"><?php esc_html_e( '_Aprajita Verma', 'the-fashion-frame' ); ?></span>
+					</div>
+				</div>
+
+				<!-- Review 6 -->
+				<div class="review-card">
+					<p class="review-quote">
+						<?php esc_html_e( 'Flawless boutique fitting and express doorstep delivery. Felt like an absolute royal wearing this ensemble! 👑', 'the-fashion-frame' ); ?>
+					</p>
+					<div class="review-photo-stack">
+						<div class="review-photo-frame">
+							<img src="<?php echo esc_url( get_template_directory_uri() . '/images/reviews/customer-1.png' ); ?>" 
+								 alt="<?php esc_attr_e( 'Customer review by Simran Kaur', 'the-fashion-frame' ); ?>" 
+								 class="review-photo-img" 
+								 width="263" 
+								 height="279" 
+								 loading="lazy" />
+						</div>
+					</div>
+					<div class="review-meta">
+						<div class="review-stars" aria-label="<?php esc_attr_e( '5 out of 5 stars', 'the-fashion-frame' ); ?>">★★★★★</div>
+						<span class="review-author"><?php esc_html_e( '_Simran Kaur', 'the-fashion-frame' ); ?></span>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Next Button -->
+			<button type="button" class="review-nav-btn review-next" id="reviews-next-btn" aria-label="<?php esc_attr_e( 'Next reviews', 'the-fashion-frame' ); ?>">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<polyline points="9 18 15 12 9 6"></polyline>
+				</svg>
+			</button>
+		</div>
 	</div>
+</section>
+
+<!-- 4. Brand Story Strip (Call to Action Section) -->
+<section class="brand-story-strip" aria-labelledby="brand-story-heading">
+	<div class="brand-story-backdrop">
+		<div class="brand-story-glow"></div>
+		<div class="brand-story-pattern"></div>
+	</div>
+
 	<div class="brand-story-inner">
-		<h2 class="font-headline-lg"><?php esc_html_e( "Lucknow's Premier Women's Readymade Boutique", 'the-fashion-frame' ); ?></h2>
-		<p class="font-body-lg">
-			<?php esc_html_e( "Discover our curated collection of readymade women's suits, elegant kurtas, and artisanal ensembles in Lucknow. Crafted with pure fabrics and timeless detailing, designed to bring effortless elegance and royal poise to every occasion.", 'the-fashion-frame' ); ?>
+		<!-- Luxury Monogram Crest & Eyebrow -->
+		<div class="brand-story-crest">
+			<div class="brand-crest-frame">
+				<img src="<?php echo esc_url( home_url( '/wp-content/uploads/2026/11/Golden-TF-Monogram-in-Hexagon.webp' ) ); ?>" 
+					 alt="<?php echo esc_attr__( 'The Fashion Frame Royal Monogram', 'the-fashion-frame' ); ?>" 
+					 class="brand-crest-img"
+					 width="64"
+					 height="64"
+					 loading="lazy" />
+			</div>
+			<div class="brand-story-eyebrow">
+				<span class="eyebrow-line"></span>
+				<span class="eyebrow-text"><?php esc_html_e( 'SIGNATURE ARTISANAL COUTURE • READY-TO-WEAR', 'the-fashion-frame' ); ?></span>
+				<span class="eyebrow-line"></span>
+			</div>
+		</div>
+
+		<!-- Main Headline -->
+		<h2 id="brand-story-heading" class="brand-story-title">
+			<?php esc_html_e( "Premier Women's Designer Readymade Boutique", 'the-fashion-frame' ); ?>
+		</h2>
+
+		<!-- Subtle Luxury Ornament -->
+		<div class="brand-story-divider" aria-hidden="true">
+			<span class="divider-line"></span>
+			<span class="divider-diamond">◆</span>
+			<span class="divider-line"></span>
+		</div>
+
+		<!-- Story Body Copy -->
+		<p class="brand-story-copy">
+			<?php esc_html_e( "Discover our curated collection of readymade women's suits, elegant kurtas, and artisanal ensembles. Crafted with pure fabrics and timeless detailing, designed to bring effortless elegance and royal poise to every occasion.", 'the-fashion-frame' ); ?>
 		</p>
+
+		<!-- 3 Luxury Hallmarks / Value Pillars -->
+		<div class="brand-story-pillars">
+			<div class="story-pillar-card">
+				<div class="pillar-icon-box">
+					<span class="material-symbols-outlined">auto_awesome</span>
+				</div>
+				<h3 class="pillar-title"><?php esc_html_e( 'Pure Artisanal Fabrics', 'the-fashion-frame' ); ?></h3>
+				<p class="pillar-desc"><?php esc_html_e( 'Finest Chanderi, pure silks, organza, and cottons enriched with intricate zari and handcrafted threadwork.', 'the-fashion-frame' ); ?></p>
+			</div>
+
+			<div class="story-pillar-card">
+				<div class="pillar-icon-box">
+					<span class="material-symbols-outlined">straighten</span>
+				</div>
+				<h3 class="pillar-title"><?php esc_html_e( 'Bespoke Readymade Fit', 'the-fashion-frame' ); ?></h3>
+				<p class="pillar-desc"><?php esc_html_e( 'Precision-cut silhouettes tailored for flattering, effortless wear with complimentary alteration guidance.', 'the-fashion-frame' ); ?></p>
+			</div>
+
+			<div class="story-pillar-card">
+				<div class="pillar-icon-box">
+					<span class="material-symbols-outlined">support_agent</span>
+				</div>
+				<h3 class="pillar-title"><?php esc_html_e( 'Personal Boutique Concierge', 'the-fashion-frame' ); ?></h3>
+				<p class="pillar-desc"><?php esc_html_e( 'Direct WhatsApp styling consultations, live video previews, and insured express delivery across India.', 'the-fashion-frame' ); ?></p>
+			</div>
+		</div>
+
+		<!-- Action Call-To-Actions -->
+		<div class="brand-story-actions">
+			<a href="<?php echo esc_url( $womens_link ); ?>" class="brand-story-btn-primary">
+				<span><?php esc_html_e( "EXPLORE WOMEN'S SUITS", 'the-fashion-frame' ); ?></span>
+				<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+			</a>
+			<a href="https://wa.me/919278340090?text=<?php echo rawurlencode( "Hello The Fashion Frame, I would like to inquire about your women's readymade collection." ); ?>" 
+			   class="brand-story-btn-whatsapp" 
+			   target="_blank" 
+			   rel="noopener noreferrer">
+				<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+					<path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.174.232-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.419-.101.824zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.436 5.176L2 22l4.981-1.307A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+				</svg>
+				<span><?php esc_html_e( 'CHAT WITH STYLIST', 'the-fashion-frame' ); ?></span>
+			</a>
+		</div>
 	</div>
 </section>
 
