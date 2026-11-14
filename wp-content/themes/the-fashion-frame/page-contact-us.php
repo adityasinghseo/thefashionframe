@@ -177,8 +177,8 @@ get_header();
 					<?php esc_html_e( 'Fill in your details below and our customer support team will get in touch with you shortly.', 'the-fashion-frame' ); ?>
 				</p>
 
-				<form id="tff-contact-form" class="space-y-4" onsubmit="handleContactSubmit(event)">
-					<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+				<form id="tff-contact-form" onsubmit="handleContactSubmit(event)">
+					<div class="contact-form-row">
 						<div class="form-group">
 							<label for="contact-name" class="form-label"><?php esc_html_e( 'Full Name *', 'the-fashion-frame' ); ?></label>
 							<input type="text" id="contact-name" name="name" required class="form-input" placeholder="<?php esc_attr_e( 'Your name', 'the-fashion-frame' ); ?>" />
@@ -189,7 +189,7 @@ get_header();
 						</div>
 					</div>
 
-					<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+					<div class="contact-form-row">
 						<div class="form-group">
 							<label for="contact-email" class="form-label"><?php esc_html_e( 'Email Address', 'the-fashion-frame' ); ?></label>
 							<input type="email" id="contact-email" name="email" class="form-input" placeholder="<?php esc_attr_e( 'yourname@example.com', 'the-fashion-frame' ); ?>" />
@@ -211,7 +211,7 @@ get_header();
 						<textarea id="contact-message" name="message" rows="4" required class="form-input form-textarea" placeholder="<?php esc_attr_e( 'Tell us how we can help you...', 'the-fashion-frame' ); ?>"></textarea>
 					</div>
 
-					<div class="form-actions flex flex-wrap items-center gap-3 pt-2">
+					<div class="contact-form-actions">
 						<button type="submit" id="contact-submit-btn" class="submit-btn-gold">
 							<span class="material-symbols-outlined text-[18px]">send</span>
 							<span><?php esc_html_e( 'Send Message via WhatsApp', 'the-fashion-frame' ); ?></span>
@@ -230,15 +230,13 @@ get_header();
 	</div>
 
 	<!-- FAQ Section for Instant Answers -->
-	<div class="contact-faq-section pt-8 border-t border-[rgba(201,162,39,0.2)]">
-		<div class="text-center mb-8">
-			<h2 class="font-headline-md text-primary text-2xl font-semibold mb-2">
-				<?php esc_html_e( 'Frequently Asked Questions', 'the-fashion-frame' ); ?>
-			</h2>
-			<p class="text-on-surface-variant text-sm"><?php esc_html_e( 'Quick answers to common questions about our store and orders.', 'the-fashion-frame' ); ?></p>
+	<div class="contact-faq-section">
+		<div class="contact-faq-header">
+			<h2><?php esc_html_e( 'Frequently Asked Questions', 'the-fashion-frame' ); ?></h2>
+			<p><?php esc_html_e( 'Quick answers to common questions about our store, sizing, and orders.', 'the-fashion-frame' ); ?></p>
 		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+		<div class="contact-faq-grid">
 			<div class="faq-card">
 				<h4 class="faq-question flex items-center gap-2">
 					<span class="material-symbols-outlined text-secondary text-[20px]">help</span>

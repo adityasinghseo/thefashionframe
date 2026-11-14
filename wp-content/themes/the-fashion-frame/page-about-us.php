@@ -9,100 +9,126 @@
 get_header();
 ?>
 
-<div class="site-container about-us-page-wrap py-12 md:py-16">
+<div class="site-container about-page-container">
 
-	<!-- Hero Header -->
-	<header class="about-hero text-center max-w-3xl mx-auto mb-14">
-		<div class="about-crest inline-block mb-4">
+	<!-- 1. Hero Header Section -->
+	<header class="about-hero-section">
+		<div class="about-hero-crest">
 			<img src="<?php echo esc_url( home_url( '/wp-content/uploads/2026/11/Golden-TF-Monogram-in-Hexagon.webp' ) ); ?>" 
 				 alt="<?php echo esc_attr__( 'The Fashion Frame Royal Monogram', 'the-fashion-frame' ); ?>" 
-				 class="mx-auto" 
-				 width="72" 
-				 height="72" 
+				 width="68" 
+				 height="68" 
 				 loading="eager" />
 		</div>
-		<span class="text-xs font-semibold uppercase tracking-[0.2em] text-secondary-fixed-dim block mb-2" style="font-family: var(--font-label);">
+		<span class="about-hero-tag">
 			<?php esc_html_e( 'The Art of Readymade Couture', 'the-fashion-frame' ); ?>
 		</span>
-		<h1 class="font-headline-xl text-primary mb-4" style="font-family: var(--font-headline); letter-spacing: -0.01em;">
+		<h1>
 			<?php esc_html_e( 'About The Fashion Frame', 'the-fashion-frame' ); ?>
 		</h1>
-		<div class="gold-divider w-16 h-0.5 mx-auto mb-6" style="background: var(--color-secondary-fixed, #ffe08e);"></div>
-		<p class="text-on-surface-variant text-base md:text-lg leading-relaxed">
+		<div class="about-gold-ornament" aria-hidden="true">
+			<span class="line"></span>
+			<span class="diamond">◆</span>
+			<span class="line"></span>
+		</div>
+		<p class="about-hero-lead">
 			<?php esc_html_e( "The Fashion Frame is a premier fashion house specializing in curated readymade Women's Suits, Handcrafted Kurta Sets, and Festive Ensembles. We celebrate the timeless poise of Indian silhouettes, crafted with pure fabrics, meticulous embellishments, and flawless ready-to-wear tailoring.", 'the-fashion-frame' ); ?>
 		</p>
 	</header>
 
-	<!-- Brand Story Grid: 2 Columns -->
-	<div class="about-story-grid grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16 max-w-5xl mx-auto">
-		<div class="about-story-content space-y-5">
-			<span class="text-xs font-semibold uppercase tracking-wider text-secondary-fixed-dim" style="font-family: var(--font-label);">
-				<?php esc_html_e( 'Our Philosophy', 'the-fashion-frame' ); ?>
-			</span>
-			<h2 class="font-headline-md text-primary" style="font-family: var(--font-headline);">
-				<?php esc_html_e( 'Where Regal Poise Meets Modern Ease', 'the-fashion-frame' ); ?>
-			</h2>
-			<p class="text-on-surface-variant text-sm md:text-base leading-relaxed">
+	<!-- 2. Brand Story Split Section (Philosophy + Quality Hallmarks) -->
+	<div class="about-story-section">
+		
+		<!-- Left: Philosophy -->
+		<div class="about-story-col">
+			<span class="section-tag"><?php esc_html_e( 'Our Philosophy', 'the-fashion-frame' ); ?></span>
+			<h2><?php esc_html_e( 'Where Regal Poise Meets Modern Ease', 'the-fashion-frame' ); ?></h2>
+			<p>
 				<?php esc_html_e( "We believe that couture elegance should never be complicated. Our collections eliminate the lengthy delays of unstitched fabrics and bespoke tailoring by offering ready-to-wear suits with impeccable drape, lining, and finish.", 'the-fashion-frame' ); ?>
 			</p>
-			<p class="text-on-surface-variant text-sm md:text-base leading-relaxed">
+			<p>
 				<?php esc_html_e( "Every ensemble is thoughtfully created with authentic hand-embroidery, delicate zari, resham threadwork, and fine laces—designed for weddings, festive galas, and treasured celebrations.", 'the-fashion-frame' ); ?>
 			</p>
-			<div class="pt-2">
-				<a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="about-cta-btn inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider" style="background: var(--color-primary); color: var(--color-secondary-fixed, #ffe08e); text-decoration: none;">
+			<div>
+				<a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="about-story-btn">
 					<span><?php esc_html_e( 'Visit Our Flagship Boutique', 'the-fashion-frame' ); ?></span>
 					<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 				</a>
 			</div>
 		</div>
 
-		<div class="about-story-card p-8 rounded-2xl border" style="background: #fbf9f6; border-color: rgba(201, 162, 39, 0.35);">
-			<h3 class="font-headline-sm text-primary mb-4" style="font-family: var(--font-headline);">
-				<?php esc_html_e( 'Our 3 Quality Hallmarks', 'the-fashion-frame' ); ?>
-			</h3>
-			<ul class="space-y-4">
-				<li class="flex items-start gap-3">
-					<span class="material-symbols-outlined text-secondary-fixed-dim mt-0.5">verified</span>
+		<!-- Right: Hallmarks Card -->
+		<div class="about-hallmarks-card">
+			<h3><?php esc_html_e( 'Our 3 Quality Hallmarks', 'the-fashion-frame' ); ?></h3>
+			<ul class="hallmark-list">
+				<li class="hallmark-item">
+					<span class="material-symbols-outlined">verified</span>
 					<div>
-						<strong class="block text-sm text-primary"><?php esc_html_e( 'Pure Artisanal Fabrics', 'the-fashion-frame' ); ?></strong>
-						<span class="text-xs text-on-surface-variant"><?php esc_html_e( 'Chanderi, organza, modal silk, and breathable fine cottons sourced for all-day royal comfort.', 'the-fashion-frame' ); ?></span>
+						<strong><?php esc_html_e( 'Pure Artisanal Fabrics', 'the-fashion-frame' ); ?></strong>
+						<span><?php esc_html_e( 'Chanderi, organza, modal silk, and breathable fine cottons sourced for all-day royal comfort.', 'the-fashion-frame' ); ?></span>
 					</div>
 				</li>
-				<li class="flex items-start gap-3">
-					<span class="material-symbols-outlined text-secondary-fixed-dim mt-0.5">straighten</span>
+				<li class="hallmark-item">
+					<span class="material-symbols-outlined">straighten</span>
 					<div>
-						<strong class="block text-sm text-primary"><?php esc_html_e( 'Flawless Ready-To-Wear Fit', 'the-fashion-frame' ); ?></strong>
-						<span class="text-xs text-on-surface-variant"><?php esc_html_e( 'Standardized Indian size grading from S to XXL with generous seam allowances.', 'the-fashion-frame' ); ?></span>
+						<strong><?php esc_html_e( 'Flawless Ready-To-Wear Fit', 'the-fashion-frame' ); ?></strong>
+						<span><?php esc_html_e( 'Standardized Indian size grading from S to XXL with generous seam allowances.', 'the-fashion-frame' ); ?></span>
 					</div>
 				</li>
-				<li class="flex items-start gap-3">
-					<span class="material-symbols-outlined text-secondary-fixed-dim mt-0.5">design_services</span>
+				<li class="hallmark-item">
+					<span class="material-symbols-outlined">design_services</span>
 					<div>
-						<strong class="block text-sm text-primary"><?php esc_html_e( 'Complimentary Boutique Alterations', 'the-fashion-frame' ); ?></strong>
-						<span class="text-xs text-on-surface-variant"><?php esc_html_e( 'Walk in to our flagship store for personalized master tailor adjustments.', 'the-fashion-frame' ); ?></span>
+						<strong><?php esc_html_e( 'Complimentary Boutique Alterations', 'the-fashion-frame' ); ?></strong>
+						<span><?php esc_html_e( 'Walk in to our flagship boutique for personalized master tailor adjustments.', 'the-fashion-frame' ); ?></span>
 					</div>
 				</li>
 			</ul>
 		</div>
+
 	</div>
 
-	<!-- Boutique Concierge CTA Strip -->
-	<div class="about-concierge-strip text-center p-8 md:p-12 rounded-2xl max-w-4xl mx-auto" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%); color: #ffffff;">
-		<span class="material-symbols-outlined text-4xl mb-3" style="color: var(--color-secondary-fixed, #ffe08e);">support_agent</span>
-		<h3 class="font-headline-md mb-2" style="font-family: var(--font-headline); color: var(--color-secondary-fixed, #ffe08e);">
-			<?php esc_html_e( 'Dedicated Styling & Order Assistance', 'the-fashion-frame' ); ?>
-		</h3>
-		<p class="text-sm md:text-base max-w-xl mx-auto mb-6" style="color: rgba(255, 255, 255, 0.88);">
-			<?php esc_html_e( 'Need help picking your size, viewing live garment fabric videos, or placing an order? Our concierge styling team is available 7 days a week.', 'the-fashion-frame' ); ?>
+	<!-- 3. Three Key Pillars Grid -->
+	<div class="about-pillars-grid">
+		<div class="about-pillar-card">
+			<div class="about-pillar-icon">
+				<span class="material-symbols-outlined">auto_awesome</span>
+			</div>
+			<h4><?php esc_html_e( "Women's Readymade Suits", 'the-fashion-frame' ); ?></h4>
+			<p><?php esc_html_e( "Anarkalis, straight-cut salwar suits, and festive palazzo sets crafted for effortless poise at every celebration.", 'the-fashion-frame' ); ?></p>
+		</div>
+
+		<div class="about-pillar-card">
+			<div class="about-pillar-icon">
+				<span class="material-symbols-outlined">child_care</span>
+			</div>
+			<h4><?php esc_html_e( "Kids' Festive Wardrobe", 'the-fashion-frame' ); ?></h4>
+			<p><?php esc_html_e( "Pure, skin-friendly cottons and breathable silks tailored for young royalty, blending comfort with festive glamour.", 'the-fashion-frame' ); ?></p>
+		</div>
+
+		<div class="about-pillar-card">
+			<div class="about-pillar-icon">
+				<span class="material-symbols-outlined">local_shipping</span>
+			</div>
+			<h4><?php esc_html_e( 'Insured Pan-India Delivery', 'the-fashion-frame' ); ?></h4>
+			<p><?php esc_html_e( 'Speedy dispatch in 24-48 business hours with doorstep express delivery and Cash on Delivery support nationwide.', 'the-fashion-frame' ); ?></p>
+		</div>
+	</div>
+
+	<!-- 4. Concierge Banner -->
+	<div class="about-concierge-banner">
+		<span class="material-symbols-outlined about-concierge-icon">support_agent</span>
+		<h3><?php esc_html_e( 'Dedicated Styling & Order Assistance', 'the-fashion-frame' ); ?></h3>
+		<p>
+			<?php esc_html_e( 'Need help picking your size, viewing live garment fabric videos, or scheduling a fitting? Our concierge styling team is available 7 days a week.', 'the-fashion-frame' ); ?>
 		</p>
-		<div class="flex flex-wrap justify-center gap-4">
-			<a href="https://wa.me/919278340090" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider" style="background: #25d366; color: #ffffff; text-decoration: none;">
+		<div class="about-concierge-actions">
+			<a href="https://wa.me/919278340090" target="_blank" rel="noopener noreferrer" class="concierge-wa-btn">
 				<span class="material-symbols-outlined text-[18px]">chat</span>
 				<span><?php esc_html_e( 'WhatsApp +91 92783 40090', 'the-fashion-frame' ); ?></span>
 			</a>
-			<a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider border" style="background: transparent; border-color: var(--color-secondary-fixed, #ffe08e); color: var(--color-secondary-fixed, #ffe08e); text-decoration: none;">
+			<a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="concierge-boutique-btn">
 				<span class="material-symbols-outlined text-[18px]">location_on</span>
-				<span><?php esc_html_e( 'Contact & Store Details', 'the-fashion-frame' ); ?></span>
+				<span><?php esc_html_e( 'Contact & Boutique Details', 'the-fashion-frame' ); ?></span>
 			</a>
 		</div>
 	</div>

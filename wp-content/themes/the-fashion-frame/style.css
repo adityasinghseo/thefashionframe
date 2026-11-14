@@ -7096,3 +7096,483 @@ form.checkout_coupon button.button {
     padding: 1.5rem;
   }
 }
+
+/* ==========================================================================
+   Contact Us & About Us Modern UI Polishes
+   ========================================================================== */
+
+/* Contact Header */
+.contact-header-wrap {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+}
+
+.contact-header-wrap h1 {
+  font-family: var(--font-headline);
+  font-size: 2.25rem;
+  color: var(--color-primary);
+  margin: 0.5rem 0 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.contact-hero-lead {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-on-surface-variant);
+  margin: 0 auto;
+}
+
+/* Contact Form Grid Elements */
+.contact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.contact-form-row:last-of-type {
+  margin-bottom: 0;
+}
+
+.contact-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  padding-top: 0.75rem;
+}
+
+/* Boutique Details List */
+.boutique-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin: 1.5rem 0;
+}
+
+.boutique-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.boutique-detail-item .material-symbols-outlined {
+  color: var(--color-secondary, #755b00);
+  font-size: 1.35rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.boutique-detail-item strong {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.15rem;
+}
+
+.boutique-detail-item span {
+  font-size: 0.825rem;
+  line-height: 1.45;
+  color: var(--color-on-surface-variant);
+}
+
+/* Contact FAQ Section */
+.contact-faq-section {
+  padding-top: 2.5rem;
+  margin-top: 3.5rem;
+  border-top: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+.contact-faq-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 2rem;
+}
+
+.contact-faq-header h2 {
+  font-family: var(--font-headline);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.35rem;
+}
+
+.contact-faq-header p {
+  font-size: 0.875rem;
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+
+.contact-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .contact-form-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .contact-faq-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* ==========================================================================
+   About Us Page Architecture
+   ========================================================================== */
+
+.about-page-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 5rem;
+}
+
+/* Hero Section */
+.about-hero-section {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3.5rem;
+}
+
+.about-hero-crest {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.about-hero-crest img {
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 4px 12px rgba(201, 162, 39, 0.25));
+}
+
+.about-hero-tag {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-secondary, #755b00);
+  margin-bottom: 0.5rem;
+}
+
+.about-hero-section h1 {
+  font-family: var(--font-headline);
+  font-size: 2.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  letter-spacing: -0.015em;
+  margin: 0 0 1rem;
+  line-height: 1.15;
+}
+
+.about-gold-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.25rem auto 1.5rem;
+  color: var(--color-secondary, #755b00);
+}
+
+.about-gold-ornament .line {
+  width: 50px;
+  height: 1px;
+  background: var(--color-secondary, #755b00);
+  opacity: 0.5;
+}
+
+.about-gold-ornament .diamond {
+  font-size: 0.65rem;
+}
+
+.about-hero-lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+
+/* Story Section (2 Columns) */
+.about-story-section {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.about-story-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.about-story-col .section-tag {
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-secondary, #755b00);
+}
+
+.about-story-col h2 {
+  font-family: var(--font-headline);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.about-story-col p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+
+.about-story-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  background: var(--color-primary);
+  color: var(--color-secondary-fixed, #ffe08e) !important;
+  border-radius: 9999px;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  width: fit-content;
+  box-shadow: 0 4px 15px rgba(0, 43, 27, 0.2);
+}
+
+.about-story-btn:hover {
+  background: #0d3824;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 43, 27, 0.3);
+}
+
+/* Quality Hallmarks Card */
+.about-hallmarks-card {
+  background: #fbf9f6;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  border-radius: 16px;
+  padding: 2.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.about-hallmarks-card h3 {
+  font-family: var(--font-headline);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0 0 1.5rem;
+}
+
+.hallmark-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hallmark-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.hallmark-item .material-symbols-outlined {
+  color: var(--color-secondary, #755b00);
+  font-size: 1.5rem;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.hallmark-item strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.2rem;
+}
+
+.hallmark-item span {
+  display: block;
+  font-size: 0.825rem;
+  line-height: 1.5;
+  color: var(--color-on-surface-variant);
+}
+
+/* 3 Pillars Grid */
+.about-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.about-pillar-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 43, 27, 0.1);
+  border-radius: 12px;
+  padding: 2rem 1.75rem;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  border-color: var(--color-secondary-fixed-dim);
+}
+
+.about-pillar-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(201, 162, 39, 0.12);
+  color: var(--color-secondary, #755b00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.about-pillar-icon .material-symbols-outlined {
+  font-size: 1.75rem;
+}
+
+.about-pillar-card h4 {
+  font-family: var(--font-headline);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0 0 0.5rem;
+}
+
+.about-pillar-card p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+
+/* Concierge Banner */
+.about-concierge-banner {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 43, 27, 0.2);
+}
+
+.about-concierge-icon {
+  font-size: 2.75rem;
+  color: var(--color-secondary-fixed, #ffe08e);
+  margin-bottom: 0.75rem;
+}
+
+.about-concierge-banner h3 {
+  font-family: var(--font-headline);
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: var(--color-secondary-fixed, #ffe08e);
+  margin: 0 0 0.5rem;
+}
+
+.about-concierge-banner p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto 1.75rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.about-concierge-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.concierge-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  background: #25d366;
+  color: #ffffff !important;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.concierge-wa-btn:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+}
+
+.concierge-boutique-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--color-secondary-fixed, #ffe08e) !important;
+  border: 1px solid var(--color-secondary-fixed, #ffe08e);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.concierge-boutique-btn:hover {
+  background: rgba(255, 224, 142, 0.15);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .about-story-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .about-pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .about-hero-section h1 {
+    font-size: 2.15rem;
+  }
+  .about-concierge-banner {
+    padding: 2.25rem 1.25rem;
+  }
+}
