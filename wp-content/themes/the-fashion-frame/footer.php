@@ -111,8 +111,6 @@
 					<ul class="footer-links">
 						<li><a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>"><?php esc_html_e( 'About Us', 'the-fashion-frame' ); ?></a></li>
 						<li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Contact Us', 'the-fashion-frame' ); ?></a></li>
-						<li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Flagship Boutique Experience', 'the-fashion-frame' ); ?></a></li>
-						<li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"><?php esc_html_e( 'Complimentary Alterations', 'the-fashion-frame' ); ?></a></li>
 					</ul>
 					<div class="footer-store-timing" style="margin-top: 1.15rem;">
 						<span class="timing-title"><?php esc_html_e( 'Flagship Store Hours:', 'the-fashion-frame' ); ?></span>
